@@ -1,0 +1,36 @@
+.layout {
+	display: grid;
+	width: 100%;
+	min-height: 100vh;
+	grid-template-areas:
+		'h h h'
+		'm m a'
+		'm m a'
+		'f f a';
+	grid-template-rows: 100px 1fr 1fr 120px;
+	grid-template-columns: 1fr 1fr 1fr;
+
+	header {
+		grid-area: h;
+		background-color: rgba(24, 24, 24, 255);
+		border-bottom: 1px solid rgba(36, 36, 36, 255);
+	}
+
+	main {
+		grid-area: m;
+		background-color: rgba(24, 24, 24, 255);
+		border-bottom: 1px solid rgba(36, 36, 36, 255);
+		border-right: 1px solid rgba(36, 36, 36, 255);
+	}
+
+	aside {
+		grid-area: a;
+		background-color: rgba(24, 24, 24, 255);
+	}
+
+	footer {
+		grid-area: f;
+		background-color: rgba(24, 24, 24, 255);
+		border-right: 1px solid rgba(36, 36, 36, 255);
+	}
+}

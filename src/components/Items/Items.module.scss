@@ -1,0 +1,53 @@
+.items {
+	padding: 15px 25px;
+}
+
+.buttons {
+	display: flex;
+	border-bottom: 1px solid rgba(36, 36, 36, 255);
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+
+.button {
+	font-size: 20px;
+	margin-right: 25px;
+	cursor: pointer;
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: #d5ac05;
+	}
+
+	&.active {
+		border-bottom: 5px solid #d5ac05;
+	}
+}
+
+.info {
+	display: flex;
+	justify-content: space-between;
+	color: #777;
+	margin-bottom: 10px;
+	padding: 0 10px 0 0;
+}
+
+.id {
+	flex: 0 0 40px;
+	overflow: hidden;
+	width: 40px;
+	min-height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
+}
+
+.name {
+	flex: 1 1 25%;
+	overflow: hidden;
+}
+
+.author {
+	flex: 0 1 50%;
+}

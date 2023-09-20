@@ -1,0 +1,32 @@
+.wrapper {
+	flex: 0 1 25%;
+	height: 40px;
+	position: relative;
+}
+
+.btn {
+	font-size: 26px;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	position: absolute;
+	top: 7px;
+	left: 5px;
+
+	&:hover {
+		color: #d5ac05;
+	}
+}
+
+.search {
+	height: 40px;
+	background-color: rgba(24, 24, 24, 255);
+	outline: 1px solid #777;
+	padding: 5px 10px 5px 40px;
+	width: 100%;
+	font-size: 16px;
+	color: #fff;
+
+	&:focus {
+		outline: 1px solid #777;
+	}
+}

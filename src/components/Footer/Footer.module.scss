@@ -1,0 +1,54 @@
+.footer {
+	color: #777;
+	font-size: 14px;
+	padding: 15px 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.buttons {
+	display: flex;
+
+	.button {
+		color: #fff;
+		cursor: pointer;
+		transition: color 0.3s ease;
+		margin-right: 25px;
+
+		&:hover {
+			color: #d5ac05;
+		}
+	}
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.copyright {
+	color: #fff;
+	text-align: right;
+
+	span {
+		font-size: 17px;
+	}
+}
+
+.link {
+	cursor: pointer;
+	transition: color 0.3s ease;
+	margin-top: 10px;
+
+	&:hover {
+		color: #d5ac05;
+	}
+}
+
+.info {
+	margin-top: auto;
+	width: 45%;
+	line-height: 1.3;
+}
