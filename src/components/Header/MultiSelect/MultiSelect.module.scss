@@ -24,6 +24,7 @@
 		color: #fff;
 		background-color: rgba(24, 24, 24, 255);
 		overflow: hidden;
+		cursor: pointer;
 
 		&:hover {
 			background-color: rgba(36, 36, 36, 255);
@@ -40,6 +41,7 @@
 		&:hover {
 			color: #fff;
 			background-color: rgba(0, 0, 0, 0.5);
+			cursor: pointer;
 		}
 	}
 
@@ -60,5 +62,9 @@
 
 	[class$='-indicatorSeparator'] {
 		background-color: rgba(36, 36, 36, 255);
+	}
+
+	[class$='-indicatorContainer'] {
+		cursor: pointer;
 	}
 }

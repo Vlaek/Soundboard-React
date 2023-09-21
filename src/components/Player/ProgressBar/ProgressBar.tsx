@@ -19,7 +19,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	const handleProgressChange = () => {
 		if (audioRef.current && progressBarRef.current) {
 			audioRef.current.currentTime = +progressBarRef.current.value
-			console.log(progressBarRef)
 		}
 	}
 

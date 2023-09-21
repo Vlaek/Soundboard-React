@@ -17,7 +17,7 @@ const Footer: FC = () => {
 			</div>
 			<div className={styles.footer__right}>
 				<div className={styles.copyright}>
-					<span className={styles.link}>© 2023 ООО «Название»</span>
+					<span className={styles.link}>© 2023 ООО «Soundboard»</span>
 					<div className={styles.link}>Пет-проект Vlaek GitHub</div>
 				</div>
 			</div>
