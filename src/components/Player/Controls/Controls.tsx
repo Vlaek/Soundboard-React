@@ -149,26 +149,29 @@ const Controls: FC<ControlsProps> = ({
 			</div>
 
 			<div className={styles.volume}>
-				<button onClick={() => setMuteVolume(prev => !prev)}>
-					{muteVolume || volume < 5 ? (
-						<IoMdVolumeOff />
-					) : volume < 40 ? (
-						<IoMdVolumeLow />
-					) : (
-						<IoMdVolumeHigh />
-					)}
-				</button>
-				<input
-					type='range'
-					min={0}
-					max={100}
-					value={volume}
-					onChange={e => setVolume(+e.target.value)}
-					style={{
-						background: `linear-gradient(to right, #f50 ${volume}%, #ccc ${volume}%)`,
-						opacity: 0,
-					}}
-				/>
+				<div className={styles.volumeContainer}>
+					<button onClick={() => setMuteVolume(prev => !prev)}>
+						{muteVolume || volume < 5 ? (
+							<IoMdVolumeOff />
+						) : volume < 40 ? (
+							<IoMdVolumeLow />
+						) : (
+							<IoMdVolumeHigh />
+						)}
+					</button>
+					<div className={styles.inputContainer}>
+						<input
+							type='range'
+							min={0}
+							max={100}
+							value={volume}
+							onChange={e => setVolume(+e.target.value)}
+							style={{
+								background: `linear-gradient(to right, #d5ac05 ${volume}%, #777 ${volume}%)`,
+							}}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

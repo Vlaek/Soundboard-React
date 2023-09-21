@@ -217,14 +217,6 @@ export const data = [
 	},
 	{
 		id: 27,
-		file: 'блять.mp3',
-		name: 'Бл*ть',
-		author: 'Геральт',
-		duration: '00:01',
-		explicit: true,
-	},
-	{
-		id: 28,
 		file: 'Вот сука.mp3',
 		name: 'Вот сука',
 		author: 'Геральт',
@@ -232,7 +224,7 @@ export const data = [
 		explicit: true,
 	},
 	{
-		id: 29,
+		id: 28,
 		file: 'Зараза.mp3',
 		name: 'Зараза',
 		author: 'Геральт',
@@ -240,7 +232,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 30,
+		id: 29,
 		file: 'Иди сюда.mp3',
 		name: 'Иди, иди сюда',
 		author: 'Геральт',
@@ -248,7 +240,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 31,
+		id: 30,
 		file: 'Мертв.mp3',
 		name: 'Мертв',
 		author: 'Геральт',
@@ -256,7 +248,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 32,
+		id: 31,
 		file: 'Не стоит.mp3',
 		name: 'Не стОит',
 		author: 'Геральт',
@@ -264,7 +256,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 33,
+		id: 32,
 		file: 'Неплохо.mp3',
 		name: 'Неплохо',
 		author: 'Геральт',
@@ -272,7 +264,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 34,
+		id: 33,
 		file: 'Никак вы, блядь, не научитесь.mp3',
 		name: 'Никак вы, бл*дь, не научитесь',
 		author: 'Геральт',
@@ -280,15 +272,7 @@ export const data = [
 		explicit: true,
 	},
 	{
-		id: 35,
-		file: 'Ну давай.mp3',
-		name: 'Ну давай!',
-		author: 'Геральт',
-		duration: '00:02',
-		explicit: false,
-	},
-	{
-		id: 36,
+		id: 34,
 		file: 'Давай.mp3',
 		name: 'Давай',
 		author: 'Геральт',
@@ -296,7 +280,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 37,
+		id: 35,
 		file: 'Ну что паскуда.mp3',
 		name: 'Ну что, паскуда',
 		author: 'Геральт',
@@ -304,7 +288,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 38,
+		id: 36,
 		file: 'Ох и гнусный же ты.mp3',
 		name: 'Ох и гнусный же ты',
 		author: 'Геральт',
@@ -312,7 +296,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 39,
+		id: 37,
 		file: 'Покончим с этим.mp3',
 		name: 'Покончим с этим',
 		author: 'Геральт',
@@ -320,7 +304,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 40,
+		id: 38,
 		file: 'Пора заканчивать.mp3',
 		name: 'Пора заканчивать',
 		author: 'Геральт',
@@ -328,7 +312,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 41,
+		id: 39,
 		file: 'Сдохни.mp3',
 		name: 'Сдохни!',
 		author: 'Геральт',
@@ -336,7 +320,7 @@ export const data = [
 		explicit: false,
 	},
 	{
-		id: 42,
+		id: 40,
 		file: 'У тебя сегодня плохой день.mp3',
 		name: 'У тебя сегодня плохой день',
 		author: 'Геральт',
