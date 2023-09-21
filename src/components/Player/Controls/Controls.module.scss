@@ -1,0 +1,36 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.controls {
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.buttons {
+	height: 100%;
+	margin-right: 75px;
+}
+
+button {
+	height: 100%;
+	font-size: 30px;
+	color: #787575;
+	background-color: inherit;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	margin-left: 15px;
+
+	&:hover {
+		color: #dcdcdc;
+	}
+}
+
+.volume {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

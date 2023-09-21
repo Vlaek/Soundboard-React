@@ -1,0 +1,19 @@
+.wrapper {
+	height: 60px;
+}
+
+.text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+}
+
+.name {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.author {
+	font-size: 12px;
+}

@@ -1,7 +1,7 @@
 export const data = [
 	{
 		id: 0,
-		file: 'гроза мать ее.ogg',
+		file: 'гроза мать ее.mp3',
 		name: 'Гроза, мать ее',
 		author: 'Геральт',
 		duration: '00:01',
@@ -9,7 +9,7 @@ export const data = [
 	},
 	{
 		id: 1,
-		file: 'ведьмак (стих).ogg',
+		file: 'ведьмак (стих).mp3',
 		name: 'Стих про ведьмака',
 		author: 'НПС',
 		duration: '00:09',
@@ -17,7 +17,7 @@ export const data = [
 	},
 	{
 		id: 2,
-		file: 'веди себя прилично ведьмак.ogg',
+		file: 'веди себя прилично ведьмак.mp3',
 		name: 'Веди себя прилично',
 		author: 'НПС',
 		duration: '00:04',
@@ -25,7 +25,7 @@ export const data = [
 	},
 	{
 		id: 3,
-		file: 'я пацифист.ogg',
+		file: 'я пацифист.mp3',
 		name: 'Я пацифист',
 		author: 'НПС',
 		duration: '00:01',
@@ -33,7 +33,7 @@ export const data = [
 	},
 	{
 		id: 4,
-		file: 'смех.ogg',
+		file: 'смех.mp3',
 		name: 'Смех',
 		author: 'НПС',
 		duration: '00:04',
@@ -41,7 +41,7 @@ export const data = [
 	},
 	{
 		id: 5,
-		file: 'бегут неуклюжие пешеходы по лужам.ogg',
+		file: 'бегут неуклюжие пешеходы по лужам.mp3',
 		name: 'Бегут неуклюжие пешеходы по лужам',
 		author: 'НПС',
 		duration: '00:06',
@@ -49,7 +49,7 @@ export const data = [
 	},
 	{
 		id: 6,
-		file: 'Бедняжечка.ogg',
+		file: 'бедняжечка.mp3',
 		name: 'Бедняжечка',
 		author: 'НПС',
 		duration: '00:02',
@@ -57,7 +57,7 @@ export const data = [
 	},
 	{
 		id: 7,
-		file: 'боги спасите.ogg',
+		file: 'боги спасите.mp3',
 		name: 'Боги спасите',
 		author: 'НПС',
 		duration: '00:03',
@@ -65,15 +65,15 @@ export const data = [
 	},
 	{
 		id: 8,
-		file: 'веди себя прилично хулиган.ogg',
-		name: 'Веди себя прилично хулиган',
+		file: 'веди себя прилично хулиган.mp3',
+		name: 'Веди себя прилично, хулиган',
 		author: 'НПС',
 		duration: '00:04',
 		explicit: false,
 	},
 	{
 		id: 9,
-		file: 'вялый ты какой то тухлого мяса наелся.ogg',
+		file: 'вялый ты какой то тухлого мяса наелся.mp3',
 		name: 'Вялый ты какой-то',
 		author: 'НПС',
 		duration: '00:05',
@@ -81,7 +81,7 @@ export const data = [
 	},
 	{
 		id: 10,
-		file: 'глаза видят уши слышат уста молчат.ogg',
+		file: 'глаза видят уши слышат уста молчат.mp3',
 		name: 'Глаза видят, уши слышат, уста молчат',
 		author: 'НПС',
 		duration: '00:05',
@@ -89,7 +89,7 @@ export const data = [
 	},
 	{
 		id: 11,
-		file: 'глазища у тебя змеиные а язык.ogg',
+		file: 'глазища у тебя змеиные а язык.mp3',
 		name: 'Глазища у тебя змеиные',
 		author: 'НПС',
 		duration: '00:05',
@@ -97,7 +97,7 @@ export const data = [
 	},
 	{
 		id: 12,
-		file: 'да благоволит тебе фортуна.ogg',
+		file: 'да благоволит тебе фортуна.mp3',
 		name: 'Да благоволит тебе фортуна',
 		author: 'НПС',
 		duration: '00:03',
@@ -105,7 +105,7 @@ export const data = [
 	},
 	{
 		id: 13,
-		file: 'бывай.ogg',
+		file: 'бывай.mp3',
 		name: 'Бывай',
 		author: 'Геральт',
 		duration: '00:02',
@@ -113,7 +113,7 @@ export const data = [
 	},
 	{
 		id: 14,
-		file: 'И что такого.ogg',
+		file: 'И что такого.mp3',
 		name: 'И что такого',
 		author: 'Геральт',
 		duration: '00:02',
@@ -121,7 +121,7 @@ export const data = [
 	},
 	{
 		id: 15,
-		file: 'Я хочу помочь нильфгаардской женщине.ogg',
+		file: 'Я хочу помочь нильфгаардской женщине.mp3',
 		name: 'Я хочу помочь нильфгаардской женщине',
 		author: 'Геральт',
 		duration: '00:03',
@@ -129,7 +129,7 @@ export const data = [
 	},
 	{
 		id: 16,
-		file: 'Похоже дождь собирается.ogg',
+		file: 'Похоже дождь собирается.mp3',
 		name: 'Похоже, дождь собирается',
 		author: 'Геральт',
 		duration: '00:03',
@@ -137,7 +137,7 @@ export const data = [
 	},
 	{
 		id: 17,
-		file: 'Дождь.ogg',
+		file: 'Дождь.mp3',
 		name: 'Дождь',
 		author: 'Геральт',
 		duration: '00:02',
@@ -145,7 +145,7 @@ export const data = [
 	},
 	{
 		id: 18,
-		file: 'Жарко.ogg',
+		file: 'Жарко.mp3',
 		name: 'Жарко',
 		author: 'Геральт',
 		duration: '00:02',
@@ -153,7 +153,7 @@ export const data = [
 	},
 	{
 		id: 19,
-		file: 'Похоже дождь собирается.ogg',
+		file: 'Похоже дождь собирается.mp3',
 		name: 'Похоже, дождь собирается',
 		author: 'Геральт',
 		duration: '00:03',
@@ -161,7 +161,7 @@ export const data = [
 	},
 	{
 		id: 20,
-		file: 'Дождь.ogg',
+		file: 'Дождь.mp3',
 		name: 'Дождь',
 		author: 'Геральт',
 		duration: '00:02',
@@ -169,7 +169,7 @@ export const data = [
 	},
 	{
 		id: 21,
-		file: 'Ветер.ogg',
+		file: 'Ветер.mp3',
 		name: 'Ну и ветер',
 		author: 'Геральт',
 		duration: '00:02',
@@ -177,7 +177,7 @@ export const data = [
 	},
 	{
 		id: 22,
-		file: 'Погода в самый раз.ogg',
+		file: 'Погода в самый раз.mp3',
 		name: 'Погода в самый раз',
 		author: 'Геральт',
 		duration: '00:02',
@@ -185,7 +185,7 @@ export const data = [
 	},
 	{
 		id: 23,
-		file: 'Распогодилось.ogg',
+		file: 'Распогодилось.mp3',
 		name: 'Распогодилось',
 		author: 'Геральт',
 		duration: '00:02',
@@ -193,7 +193,7 @@ export const data = [
 	},
 	{
 		id: 24,
-		file: 'Снег пошел.ogg',
+		file: 'Снег пошел.mp3',
 		name: 'Снег пошел',
 		author: 'Геральт',
 		duration: '00:02',
@@ -201,7 +201,7 @@ export const data = [
 	},
 	{
 		id: 25,
-		file: 'Холодает.ogg',
+		file: 'Холодает.mp3',
 		name: 'Холодает',
 		author: 'Геральт',
 		duration: '00:02',
@@ -209,7 +209,7 @@ export const data = [
 	},
 	{
 		id: 26,
-		file: 'Похоже шторм будет.ogg',
+		file: 'Похоже шторм будет.mp3',
 		name: 'Похоже, шторм будет',
 		author: 'Геральт',
 		duration: '00:03',
@@ -217,7 +217,7 @@ export const data = [
 	},
 	{
 		id: 27,
-		file: 'блять.ogg',
+		file: 'блять.mp3',
 		name: 'Бл*ть',
 		author: 'Геральт',
 		duration: '00:01',
@@ -225,7 +225,7 @@ export const data = [
 	},
 	{
 		id: 28,
-		file: 'Вот сука.ogg',
+		file: 'Вот сука.mp3',
 		name: 'Вот сука',
 		author: 'Геральт',
 		duration: '00:02',
@@ -233,7 +233,7 @@ export const data = [
 	},
 	{
 		id: 29,
-		file: 'Зараза.ogg',
+		file: 'Зараза.mp3',
 		name: 'Зараза',
 		author: 'Геральт',
 		duration: '00:02',
@@ -241,7 +241,7 @@ export const data = [
 	},
 	{
 		id: 30,
-		file: 'Иди сюда.ogg',
+		file: 'Иди сюда.mp3',
 		name: 'Иди, иди сюда',
 		author: 'Геральт',
 		duration: '00:02',
@@ -249,7 +249,7 @@ export const data = [
 	},
 	{
 		id: 31,
-		file: 'Мертв.ogg',
+		file: 'Мертв.mp3',
 		name: 'Мертв',
 		author: 'Геральт',
 		duration: '00:02',
@@ -257,7 +257,7 @@ export const data = [
 	},
 	{
 		id: 32,
-		file: 'Не стоит.ogg',
+		file: 'Не стоит.mp3',
 		name: 'Не стОит',
 		author: 'Геральт',
 		duration: '00:02',
@@ -265,7 +265,7 @@ export const data = [
 	},
 	{
 		id: 33,
-		file: 'Неплохо.ogg',
+		file: 'Неплохо.mp3',
 		name: 'Неплохо',
 		author: 'Геральт',
 		duration: '00:02',
@@ -273,7 +273,7 @@ export const data = [
 	},
 	{
 		id: 34,
-		file: 'Никак вы, блядь, не научитесь.ogg',
+		file: 'Никак вы, блядь, не научитесь.mp3',
 		name: 'Никак вы, бл*дь, не научитесь',
 		author: 'Геральт',
 		duration: '00:03',
@@ -281,7 +281,7 @@ export const data = [
 	},
 	{
 		id: 35,
-		file: 'Ну давай.ogg',
+		file: 'Ну давай.mp3',
 		name: 'Ну давай!',
 		author: 'Геральт',
 		duration: '00:02',
@@ -289,7 +289,7 @@ export const data = [
 	},
 	{
 		id: 36,
-		file: 'Давай.ogg',
+		file: 'Давай.mp3',
 		name: 'Давай',
 		author: 'Геральт',
 		duration: '00:02',
@@ -297,7 +297,7 @@ export const data = [
 	},
 	{
 		id: 37,
-		file: 'Ну что паскуда.ogg',
+		file: 'Ну что паскуда.mp3',
 		name: 'Ну что, паскуда',
 		author: 'Геральт',
 		duration: '00:02',
@@ -305,7 +305,7 @@ export const data = [
 	},
 	{
 		id: 38,
-		file: 'Ох и гнусный же ты.ogg',
+		file: 'Ох и гнусный же ты.mp3',
 		name: 'Ох и гнусный же ты',
 		author: 'Геральт',
 		duration: '00:03',
@@ -313,7 +313,7 @@ export const data = [
 	},
 	{
 		id: 39,
-		file: 'Покончим с этим.ogg',
+		file: 'Покончим с этим.mp3',
 		name: 'Покончим с этим',
 		author: 'Геральт',
 		duration: '00:02',
@@ -321,7 +321,7 @@ export const data = [
 	},
 	{
 		id: 40,
-		file: 'Пора заканчивать.ogg',
+		file: 'Пора заканчивать.mp3',
 		name: 'Пора заканчивать',
 		author: 'Геральт',
 		duration: '00:02',
@@ -329,7 +329,7 @@ export const data = [
 	},
 	{
 		id: 41,
-		file: 'Сдохни.ogg',
+		file: 'Сдохни.mp3',
 		name: 'Сдохни!',
 		author: 'Геральт',
 		duration: '00:02',
@@ -337,7 +337,7 @@ export const data = [
 	},
 	{
 		id: 42,
-		file: 'У тебя сегодня плохой день.ogg',
+		file: 'У тебя сегодня плохой день.mp3',
 		name: 'У тебя сегодня плохой день',
 		author: 'Геральт',
 		duration: '00:02',

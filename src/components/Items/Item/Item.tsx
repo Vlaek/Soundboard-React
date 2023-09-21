@@ -7,15 +7,21 @@ import { ITrack } from '../../../types/types'
 interface ItemProps {
 	item: ITrack
 	index: number
+	like: boolean
+	likes: ITrack[]
+	setLike: (like: ITrack) => void
+	currentTrack: ITrack | null
+	setCurrentTrack: (like: ITrack) => void
 }
 
-const Item: FC<ItemProps> = ({ item, index }) => {
-	const [like, setLike] = useState<boolean>(false)
+const Item: FC<ItemProps> = ({ item, index, like, setLike, currentTrack, setCurrentTrack }) => {
 	const [isFocused, setIsFocused] = useState<boolean>(false)
 	const active = true
 
 	const handleClick = (item: ITrack) => {
 		new Audio(`/tracks/${item.file}`).play()
+		setCurrentTrack(item)
+		console.log(currentTrack)
 	}
 
 	return (
@@ -60,7 +66,7 @@ const Item: FC<ItemProps> = ({ item, index }) => {
 					className={styles.like}
 					onClick={e => {
 						e.stopPropagation()
-						setLike(!like)
+						setLike(item)
 					}}
 					title={
 						like
