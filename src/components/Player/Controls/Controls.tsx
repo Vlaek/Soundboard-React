@@ -1,16 +1,9 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
-import {
-	IoPlayBackSharp,
-	IoPlayForwardSharp,
-	IoPlaySkipBackSharp,
-	IoPlaySkipForwardSharp,
-	IoPlaySharp,
-	IoPauseSharp,
-} from 'react-icons/io5'
-import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from 'react-icons/io'
 import { ITrack } from '../../../types/types'
 import styles from './Controls.module.scss'
 import Display from '../Display/Display'
+import Buttons from '../Buttons/Buttons'
+import Volume from './../Volume/Volume'
 
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>
@@ -24,6 +17,8 @@ interface ControlsProps {
 	progressRef: React.RefObject<HTMLDivElement>
 	currentTrack: ITrack
 	setDuration: React.Dispatch<React.SetStateAction<number>>
+	isPlaying: boolean
+	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Controls: FC<ControlsProps> = ({
@@ -38,24 +33,15 @@ const Controls: FC<ControlsProps> = ({
 	progressRef,
 	currentTrack,
 	setDuration,
+	isPlaying,
+	setIsPlaying,
 }) => {
-	const [isPlaying, setIsPlaying] = useState(false)
-	const [volume, setVolume] = useState(60)
+	const [volume, setVolume] = useState(10)
 	const [muteVolume, setMuteVolume] = useState(false)
 
-	const handleNext = () => {
-		if (trackIndex >= tracks.length - 1) {
-			setTrackIndex(0)
-			setCurrentTrack(tracks[0])
-		} else {
-			setTrackIndex(prev => prev + 1)
-			setCurrentTrack(tracks[trackIndex + 1])
-		}
-	}
-
-	const togglePlayPause = () => {
+	const togglePlayPause = useCallback(() => {
 		setIsPlaying(prev => !prev)
-	}
+	}, [setIsPlaying])
 
 	const playAnimationRef = useRef<number | null>(null)
 
@@ -85,13 +71,15 @@ const Controls: FC<ControlsProps> = ({
 		playAnimationRef.current = requestAnimationFrame(repeat)
 	}, [isPlaying, audioRef, repeat])
 
-	const skipForward = () => {
-		if (audioRef.current) audioRef.current.currentTime += 10
-	}
-
-	const skipBackward = () => {
-		if (audioRef.current) audioRef.current.currentTime -= 10
-	}
+	const handleNext = useCallback(() => {
+		if (trackIndex >= tracks.length - 1) {
+			setTrackIndex(0)
+			setCurrentTrack(tracks[0])
+		} else {
+			setTrackIndex(prev => prev + 1)
+			setCurrentTrack(tracks[trackIndex + 1])
+		}
+	}, [setCurrentTrack, setTrackIndex, trackIndex, tracks])
 
 	const handlePrevious = () => {
 		if (trackIndex === 0) {
@@ -102,7 +90,24 @@ const Controls: FC<ControlsProps> = ({
 			setTrackIndex(prev => prev - 1)
 			setCurrentTrack(tracks[trackIndex - 1])
 		}
+		if (!isPlaying) {
+			setIsPlaying(true)
+		}
 	}
+
+	const skipForward = useCallback(() => {
+		if (audioRef.current) {
+			if (duration <= audioRef.current.currentTime + 5) {
+				handleNext()
+			} else {
+				audioRef.current.currentTime += 10
+			}
+		}
+	}, [audioRef, duration, handleNext])
+
+	const skipBackward = useCallback(() => {
+		if (audioRef.current) audioRef.current.currentTime -= 5
+	}, [audioRef])
 
 	useEffect(() => {
 		if (audioRef) {
@@ -113,27 +118,45 @@ const Controls: FC<ControlsProps> = ({
 		}
 	}, [volume, audioRef, muteVolume])
 
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			switch (e.key) {
+				case 'ArrowRight':
+					skipForward()
+					break
+				case 'ArrowLeft':
+					skipBackward()
+					break
+				case ' ': {
+					e.preventDefault()
+					togglePlayPause()
+					break
+				}
+				default:
+					return
+			}
+		}
+
+		document.addEventListener('keydown', handleKeyDown)
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown)
+		}
+	}, [skipBackward, skipForward, togglePlayPause])
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.controls}>
-				<div className={styles.buttons}>
-					<button onClick={handlePrevious}>
-						<IoPlaySkipBackSharp />
-					</button>
-					<button onClick={skipBackward}>
-						<IoPlayBackSharp />
-					</button>
-
-					<button onClick={togglePlayPause}>
-						{isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
-					</button>
-					<button onClick={skipForward}>
-						<IoPlayForwardSharp />
-					</button>
-					<button onClick={handleNext}>
-						<IoPlaySkipForwardSharp />
-					</button>
-				</div>
+				<Buttons
+					{...{
+						handleNext,
+						handlePrevious,
+						skipForward,
+						skipBackward,
+						togglePlayPause,
+						isPlaying,
+					}}
+				/>
 				<Display
 					{...{
 						currentTrack,
@@ -147,32 +170,14 @@ const Controls: FC<ControlsProps> = ({
 					}}
 				/>
 			</div>
-
-			<div className={styles.volume}>
-				<div className={styles.volumeContainer}>
-					<button onClick={() => setMuteVolume(prev => !prev)}>
-						{muteVolume || volume < 5 ? (
-							<IoMdVolumeOff />
-						) : volume < 40 ? (
-							<IoMdVolumeLow />
-						) : (
-							<IoMdVolumeHigh />
-						)}
-					</button>
-					<div className={styles.inputContainer}>
-						<input
-							type='range'
-							min={0}
-							max={100}
-							value={volume}
-							onChange={e => setVolume(+e.target.value)}
-							style={{
-								background: `linear-gradient(to right, #d5ac05 ${volume}%, #777 ${volume}%)`,
-							}}
-						/>
-					</div>
-				</div>
-			</div>
+			<Volume
+				{...{
+					volume,
+					setVolume,
+					muteVolume,
+					setMuteVolume,
+				}}
+			/>
 		</div>
 	)
 }

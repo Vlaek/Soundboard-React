@@ -8,11 +8,22 @@ import { ITrack } from '../../types/types'
 interface ItemsProps {
 	likes: ITrack[]
 	setLike: (like: ITrack) => void
-	currentTrack: ITrack | null
+	currentTrack: ITrack
 	setCurrentTrack: (like: ITrack) => void
+	isPlaying: boolean
+	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Items: FC<ItemsProps> = ({ likes, setLike, currentTrack, setCurrentTrack }) => {
+const Items: FC<ItemsProps> = ({
+	likes,
+	setLike,
+	currentTrack,
+	setCurrentTrack,
+	isPlaying,
+	setIsPlaying,
+	setTrackIndex,
+}) => {
 	return (
 		<div className={styles.items}>
 			<div className={styles.buttons}>
@@ -35,6 +46,9 @@ const Items: FC<ItemsProps> = ({ likes, setLike, currentTrack, setCurrentTrack }
 					setLike={setLike}
 					currentTrack={currentTrack}
 					setCurrentTrack={setCurrentTrack}
+					isPlaying={isPlaying}
+					setIsPlaying={setIsPlaying}
+					setTrackIndex={setTrackIndex}
 				/>
 			))}
 		</div>

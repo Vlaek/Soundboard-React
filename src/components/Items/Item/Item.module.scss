@@ -5,17 +5,21 @@
 	justify-content: space-between;
 	align-items: center;
 	height: 40px;
-	padding: 0 10px 0px 0px;
 	cursor: pointer;
 
 	&:hover {
 		outline: 3px solid #d5ac05;
+
+		.id {
+			display: none;
+		}
 	}
 }
 
-.id {
+.idContainer {
 	flex: 0 0 40px;
 	overflow: hidden;
+	height: 40px;
 	width: 40px;
 	min-height: 20px;
 	display: flex;
@@ -86,6 +90,11 @@
 	font-size: 35px;
 	color: #d5ac05;
 	user-select: none;
+	transition: color 0.3s ease;
+}
+
+.active {
+	color: #d8d8d8;
 }
 
 .is_play {

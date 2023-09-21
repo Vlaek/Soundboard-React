@@ -1,0 +1,60 @@
+.volume {
+	height: 100%;
+	width: 150px;
+	position: relative;
+
+	input {
+		width: 150px !important;
+		transform: rotate(-90deg);
+	}
+}
+
+.btn_volume {
+	height: 100%;
+	font-size: 30px;
+	color: #787575;
+	background-color: inherit;
+	cursor: pointer;
+	transition: color 0.3s ease;
+	margin-left: 15px;
+
+	&:hover {
+		color: #dcdcdc;
+		+ .volumeContainer {
+			visibility: visible;
+			.inputContainer {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.volumeContainer {
+	width: 50px;
+	height: 230px;
+	visibility: hidden;
+	align-items: start;
+	position: absolute;
+	top: -230px;
+	left: 0;
+	transition: visibility 0.3s ease;
+
+	&:hover {
+		visibility: visible;
+		.inputContainer {
+			opacity: 1;
+		}
+	}
+}
+
+.inputContainer {
+	width: 50px;
+	height: 200px;
+	background-color: #222222;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	transition: opacity 0.3s ease;
+	opacity: 0;
+}

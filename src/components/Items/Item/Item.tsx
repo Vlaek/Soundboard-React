@@ -2,6 +2,7 @@ import { FC, useState } from 'react'
 import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
 import { MdExplicit } from 'react-icons/md'
 import styles from './Item.module.scss'
+import cl from 'classnames'
 import { ITrack } from '../../../types/types'
 
 interface ItemProps {
@@ -10,18 +11,34 @@ interface ItemProps {
 	like: boolean
 	likes: ITrack[]
 	setLike: (like: ITrack) => void
-	currentTrack: ITrack | null
+	currentTrack: ITrack
 	setCurrentTrack: (like: ITrack) => void
+	isPlaying: boolean
+	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Item: FC<ItemProps> = ({ item, index, like, setLike, currentTrack, setCurrentTrack }) => {
+const Item: FC<ItemProps> = ({
+	item,
+	index,
+	like,
+	setLike,
+	currentTrack,
+	setCurrentTrack,
+	isPlaying,
+	setIsPlaying,
+	setTrackIndex,
+}) => {
 	const [isFocused, setIsFocused] = useState<boolean>(false)
-	const active = true
 
 	const handleClick = (item: ITrack) => {
-		new Audio(`/tracks/${item.file}`).play()
-		setCurrentTrack(item)
-		console.log(currentTrack)
+		if (currentTrack !== item) {
+			setCurrentTrack(item)
+			setTrackIndex(item.id)
+			setIsPlaying(true)
+		} else {
+			setIsPlaying(!isPlaying)
+		}
 	}
 
 	return (
@@ -31,17 +48,21 @@ const Item: FC<ItemProps> = ({ item, index, like, setLike, currentTrack, setCurr
 			onMouseEnter={() => setIsFocused(true)}
 			onMouseLeave={() => setIsFocused(false)}
 		>
-			<div className={styles.id}>
+			<div className={styles.idContainer}>
 				{isFocused ? (
-					active ? (
-						<AiFillPauseCircle className={styles.play} />
+					item.id === currentTrack.id ? (
+						<AiFillPauseCircle className={cl(styles.play, styles.active)} />
 					) : (
 						<AiFillPlayCircle className={styles.play} />
 					)
-				) : active ? (
-					<div className={styles.is_play}></div>
+				) : item.id === currentTrack.id ? (
+					isPlaying ? (
+						<div className={styles.is_play}></div>
+					) : (
+						<AiFillPauseCircle className={styles.play} />
+					)
 				) : (
-					index + 1
+					<div className={styles.id}>{index + 1}</div>
 				)}
 			</div>
 			<div className={styles.name} title={item.name}>

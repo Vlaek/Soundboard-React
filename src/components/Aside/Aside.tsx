@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import Banner from './Banner/Banner'
 import { data } from './data'
 import { IBanner } from '../../types/types'
 import styles from './Aside.module.scss'
 
-const Aside: FC = () => {
+const Aside: FC = memo(() => {
 	function getRandomObjects(arr: IBanner[]) {
 		const index1 = Math.floor(Math.random() * arr.length)
 		let index2 = Math.floor(Math.random() * arr.length)
@@ -23,6 +23,6 @@ const Aside: FC = () => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default Aside
