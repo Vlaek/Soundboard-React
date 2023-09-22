@@ -19,7 +19,7 @@ export const data = [
 		id: 2,
 		file: 'веди себя прилично ведьмак.mp3',
 		name: 'Веди себя прилично',
-		author: 'Страж',
+		author: 'Стража',
 		duration: '00:03',
 		explicit: true,
 	},

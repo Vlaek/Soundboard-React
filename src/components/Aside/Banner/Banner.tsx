@@ -10,7 +10,7 @@ const Banner: FC<BannerProps> = ({ item }) => {
 	return (
 		<div className={styles.banner}>
 			<a href={item.link} target='_blank'>
-				<img src={`/img/${item.img}`} alt='banner1' draggable={false} />
+				<img src={`./img/${item.img}`} alt='banner' draggable={false} />
 			</a>
 		</div>
 	)
