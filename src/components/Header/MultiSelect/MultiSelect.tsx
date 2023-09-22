@@ -2,19 +2,25 @@ import { FC, useState } from 'react'
 import styles from './MultiSelect.module.scss'
 import Select, { MultiValue, StylesConfig, GroupBase } from 'react-select'
 import makeAnimated from 'react-select/animated'
+import { IFilters } from './../../../types/types'
 
 interface IOption {
 	value: string
 	label: string
 }
 
+interface MultiSelectProps {
+	filters: IFilters
+	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
+}
+
 const options: IOption[] = [
-	{ value: 'geralt', label: 'Геральт из Ривии' },
-	{ value: 'npc', label: 'НПС' },
-	{ value: 'zoltan', label: 'Золтан' },
+	{ value: 'Геральт', label: 'Геральт из Ривии' },
+	{ value: 'НПС', label: 'НПС' },
+	{ value: 'Золтан', label: 'Золтан' },
 ]
 
-const MultiSelect: FC = () => {
+const MultiSelect: FC<MultiSelectProps> = ({ filters, setFilters }) => {
 	const [option, setOption] = useState<MultiValue<IOption> | null>(null)
 
 	const noOptionsMessage = () => 'Нет доступных вариантов'
@@ -24,6 +30,8 @@ const MultiSelect: FC = () => {
 	const handleChange = (option: readonly IOption[]) => {
 		if (option && option.length <= 3) {
 			setOption(option)
+			const values = option.map(item => item.value)
+			setFilters({ ...filters, authorFilter: values })
 		}
 	}
 

@@ -1,17 +1,17 @@
 import { FC, useRef, useState } from 'react'
 import styles from './Player.module.scss'
-import { data as tracks } from '../Items/data'
 import Controls from './Controls/Controls'
 import ProgressBar from './ProgressBar/ProgressBar'
 import { ITrack } from '../../types/types'
 
 interface PlayerProps {
-	currentTrack: ITrack
-	setCurrentTrack: React.Dispatch<React.SetStateAction<ITrack>>
+	currentTrack: ITrack | null
+	setCurrentTrack: React.Dispatch<React.SetStateAction<ITrack | null>>
 	trackIndex: number
 	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 	isPlaying: boolean
 	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+	tracks: ITrack[]
 }
 
 const Player: FC<PlayerProps> = ({
@@ -21,6 +21,7 @@ const Player: FC<PlayerProps> = ({
 	setTrackIndex,
 	isPlaying,
 	setIsPlaying,
+	tracks,
 }) => {
 	const [timeProgress, setTimeProgress] = useState(0)
 	const [duration, setDuration] = useState(0)

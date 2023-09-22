@@ -12,3 +12,11 @@ export interface ITrack {
 	duration: string
 	explicit: boolean
 }
+
+export interface IFilters {
+	authorFilter: string[]
+	explicitFilter: boolean
+	likesFilter: boolean
+	sort: string
+	searchQuery: string
+}

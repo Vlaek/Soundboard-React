@@ -1,8 +1,14 @@
 import { FC, useRef, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { IFilters } from '../../../types/types'
 import styles from './Search.module.scss'
 
-const Search: FC = () => {
+interface SearchProps {
+	filters: IFilters
+	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
+}
+
+const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 	const [isActive, setIsActive] = useState<boolean>(false)
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -22,6 +28,10 @@ const Search: FC = () => {
 		}
 	}
 
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setFilters({ ...filters, searchQuery: e.target.value })
+	}
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.btn} onClick={handleButtonClick}>
@@ -35,6 +45,8 @@ const Search: FC = () => {
 				ref={inputRef}
 				onBlur={handleInputBlur}
 				style={{ visibility: isActive ? 'visible' : 'hidden' }}
+				value={filters.searchQuery}
+				onChange={handleChange}
 			/>
 		</div>
 	)

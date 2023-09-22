@@ -11,7 +11,7 @@ interface ItemProps {
 	like: boolean
 	likes: ITrack[]
 	setLike: (like: ITrack) => void
-	currentTrack: ITrack
+	currentTrack: ITrack | null
 	setCurrentTrack: (like: ITrack) => void
 	isPlaying: boolean
 	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
@@ -50,12 +50,12 @@ const Item: FC<ItemProps> = ({
 		>
 			<div className={styles.idContainer}>
 				{isFocused ? (
-					item.id === currentTrack.id ? (
+					item.id === currentTrack?.id ? (
 						<AiFillPauseCircle className={cl(styles.play, styles.active)} />
 					) : (
 						<AiFillPlayCircle className={styles.play} />
 					)
-				) : item.id === currentTrack.id ? (
+				) : item.id === currentTrack?.id ? (
 					isPlaying ? (
 						<div className={styles.is_play}></div>
 					) : (

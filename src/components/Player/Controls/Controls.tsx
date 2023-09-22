@@ -15,7 +15,7 @@ interface ControlsProps {
 	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 	setCurrentTrack: (track: ITrack) => void
 	progressRef: React.RefObject<HTMLDivElement>
-	currentTrack: ITrack
+	currentTrack: ITrack | null
 	setDuration: React.Dispatch<React.SetStateAction<number>>
 	isPlaying: boolean
 	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>

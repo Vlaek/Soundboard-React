@@ -3,7 +3,7 @@ import { ITrack } from '../../../types/types'
 import styles from './Display.module.scss'
 
 interface DisplayProps {
-	currentTrack: ITrack
+	currentTrack: ITrack | null
 	audioRef: React.RefObject<HTMLAudioElement>
 	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
@@ -47,15 +47,17 @@ const Display: FC<DisplayProps> = memo(
 		return (
 			<div className={styles.wrapper}>
 				<div className={styles.text}>
-					<p className={styles.name}>{currentTrack.name}</p>
-					<p className={styles.author}>{currentTrack.author}</p>
+					<p className={styles.name}>{currentTrack && currentTrack.name}</p>
+					<p className={styles.author}>{currentTrack && currentTrack.author}</p>
 				</div>
-				<audio
-					src={`/tracks/${currentTrack.file}`}
-					ref={audioRef}
-					onLoadedMetadata={onLoadedMetadata}
-					onEnded={handleNext}
-				/>
+				{currentTrack && (
+					<audio
+						src={`/tracks/${currentTrack.file}`}
+						ref={audioRef}
+						onLoadedMetadata={onLoadedMetadata}
+						onEnded={handleNext}
+					/>
+				)}
 			</div>
 		)
 	},

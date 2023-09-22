@@ -46,6 +46,19 @@
 .name {
 	flex: 1 1 25%;
 	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+
+.arrow {
+	margin-left: 15px;
+	cursor: pointer;
+	transition: color 0.3s ease;
+
+	&:hover,
+	&.active {
+		color: #d5ac05;
+	}
 }
 
 .author {
