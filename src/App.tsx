@@ -40,11 +40,7 @@ const App: FC = () => {
 	useEffect(() => {
 		const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
 		setTrackIndex(index)
-		console.log('da')
 	}, [sortedAndFilteredItems, currentTrack?.id])
-
-	// const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
-	// setTrackIndex(index)
 
 	return (
 		<div className='container'>

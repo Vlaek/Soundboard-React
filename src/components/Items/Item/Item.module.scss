@@ -31,7 +31,10 @@
 .name {
 	flex: 1 1 25%;
 	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 	transition: color 0.3s ease;
+	padding-right: 15px;
 
 	&:hover {
 		color: #d5ac05;

@@ -16,8 +16,10 @@ interface MultiSelectProps {
 
 const options: IOption[] = [
 	{ value: 'Геральт', label: 'Геральт из Ривии' },
-	{ value: 'НПС', label: 'НПС' },
-	{ value: 'Золтан', label: 'Золтан' },
+	{ value: 'Крестьянин', label: 'Крестьянин' },
+	{ value: 'Бандит', label: 'Бандит' },
+	{ value: 'Стража', label: 'Стража' },
+	{ value: 'Крестьянка', label: 'Крестьянка' },
 ]
 
 const MultiSelect: FC<MultiSelectProps> = ({ filters, setFilters }) => {

@@ -17,7 +17,7 @@ const Display: FC<DisplayProps> = memo(
 		const onLoadedMetadata = () => {
 			const seconds = audioRef.current?.duration
 			if (seconds) {
-				setDuration(seconds)
+				setDuration(seconds - 1)
 			}
 			if (progressBarRef.current) {
 				progressBarRef.current.max = String(seconds)
