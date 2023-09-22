@@ -9,3 +9,27 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.right {
+	display: flex;
+	padding-right: 20px;
+}
+
+.button {
+	width: 50px;
+	height: 100%;
+	font-size: 30px;
+	margin-left: 15px;
+	color: #787575;
+	background-color: inherit;
+	cursor: pointer;
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: #dcdcdc;
+	}
+
+	&.active {
+		color: #d5ac05;
+	}
+}

@@ -12,7 +12,11 @@ interface VolumeProps {
 const Volume: FC<VolumeProps> = memo(({ volume, setVolume, muteVolume, setMuteVolume }) => {
 	return (
 		<div className={styles.volume}>
-			<button className={styles.btn_volume} onClick={() => setMuteVolume(prev => !prev)}>
+			<button
+				className={styles.button}
+				onClick={() => setMuteVolume(prev => !prev)}
+				title='Громкость'
+			>
 				{muteVolume || volume === 0 ? (
 					<IoMdVolumeOff />
 				) : volume < 40 ? (

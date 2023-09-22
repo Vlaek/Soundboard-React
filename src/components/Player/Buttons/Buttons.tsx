@@ -21,18 +21,20 @@ interface ButtonsProps {
 const Buttons: FC<ButtonsProps> = memo(
 	({ handleNext, handlePrevious, skipForward, skipBackward, togglePlayPause, isPlaying }) => {
 		return (
-			<div className={styles.buttons}>
+			<div className={styles.buttons} title='Включить предыдущий трек'>
 				<button onClick={handlePrevious}>
 					<IoPlaySkipBackSharp />
 				</button>
-				<button onClick={skipBackward}>
+				<button onClick={skipBackward} title='Перемотать назад'>
 					<IoPlayBackSharp />
 				</button>
-				<button onClick={togglePlayPause}>{isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}</button>
-				<button onClick={skipForward}>
+				<button onClick={togglePlayPause} title='Включить / выключить'>
+					{isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+				</button>
+				<button onClick={skipForward} title='Перемотать вперед'>
 					<IoPlayForwardSharp />
 				</button>
-				<button onClick={handleNext}>
+				<button onClick={handleNext} title='Включить следующий трек'>
 					<IoPlaySkipForwardSharp />
 				</button>
 			</div>

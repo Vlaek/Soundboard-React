@@ -110,19 +110,19 @@ const App: FC = () => {
 					/>
 				}
 			/>
-			{currentTrack && (
-				<Player
-					{...{
-						tracks,
-						trackIndex,
-						setTrackIndex,
-						setCurrentTrack,
-						currentTrack,
-						isPlaying,
-						setIsPlaying,
-					}}
-				/>
-			)}
+			<Player
+				{...{
+					tracks,
+					trackIndex,
+					setTrackIndex,
+					setCurrentTrack,
+					currentTrack,
+					isPlaying,
+					setIsPlaying,
+					likes,
+				}}
+				setLike={onSetLike}
+			/>
 		</div>
 	)
 }

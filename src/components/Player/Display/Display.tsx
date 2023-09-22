@@ -7,23 +7,13 @@ interface DisplayProps {
 	audioRef: React.RefObject<HTMLAudioElement>
 	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
-	tracks: ITrack[]
-	trackIndex: number
-	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
-	setCurrentTrack: (track: ITrack) => void
+	handleNext: () => void
+	isRepeat: boolean
+	handleRepeat: () => void
 }
 
 const Display: FC<DisplayProps> = memo(
-	({
-		currentTrack,
-		audioRef,
-		setDuration,
-		progressBarRef,
-		tracks,
-		trackIndex,
-		setTrackIndex,
-		setCurrentTrack,
-	}) => {
+	({ currentTrack, audioRef, setDuration, progressBarRef, handleNext, isRepeat, handleRepeat }) => {
 		const onLoadedMetadata = () => {
 			const seconds = audioRef.current?.duration
 			if (seconds) {
@@ -31,16 +21,6 @@ const Display: FC<DisplayProps> = memo(
 			}
 			if (progressBarRef.current) {
 				progressBarRef.current.max = String(seconds)
-			}
-		}
-
-		const handleNext = () => {
-			if (trackIndex >= tracks.length - 1) {
-				setTrackIndex(0)
-				setCurrentTrack(tracks[0])
-			} else {
-				setTrackIndex(prev => prev + 1)
-				setCurrentTrack(tracks[trackIndex + 1])
 			}
 		}
 
@@ -55,7 +35,7 @@ const Display: FC<DisplayProps> = memo(
 						src={`/tracks/${currentTrack.file}`}
 						ref={audioRef}
 						onLoadedMetadata={onLoadedMetadata}
-						onEnded={handleNext}
+						onEnded={() => (isRepeat ? handleRepeat() : handleNext())}
 					/>
 				)}
 			</div>

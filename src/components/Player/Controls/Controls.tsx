@@ -1,9 +1,12 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { IoRepeatOutline, IoShuffle, IoCloseSharp } from 'react-icons/io5'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { ITrack } from '../../../types/types'
-import styles from './Controls.module.scss'
 import Display from '../Display/Display'
 import Buttons from '../Buttons/Buttons'
 import Volume from './../Volume/Volume'
+import cn from 'classnames'
+import styles from './Controls.module.scss'
 
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>
@@ -13,12 +16,14 @@ interface ControlsProps {
 	tracks: ITrack[]
 	trackIndex: number
 	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
-	setCurrentTrack: (track: ITrack) => void
+	setCurrentTrack: React.Dispatch<React.SetStateAction<ITrack | null>>
 	progressRef: React.RefObject<HTMLDivElement>
 	currentTrack: ITrack | null
 	setDuration: React.Dispatch<React.SetStateAction<number>>
 	isPlaying: boolean
 	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+	isLike: boolean
+	setLike: (like: ITrack) => void
 }
 
 const Controls: FC<ControlsProps> = ({
@@ -35,9 +40,13 @@ const Controls: FC<ControlsProps> = ({
 	setDuration,
 	isPlaying,
 	setIsPlaying,
+	isLike,
+	setLike,
 }) => {
 	const [volume, setVolume] = useState(10)
 	const [muteVolume, setMuteVolume] = useState(false)
+	const [isRandom, setIsRandom] = useState(false)
+	const [isRepeat, setIsRepeat] = useState(false)
 
 	const togglePlayPause = useCallback(() => {
 		setIsPlaying(prev => !prev)
@@ -71,15 +80,37 @@ const Controls: FC<ControlsProps> = ({
 		playAnimationRef.current = requestAnimationFrame(repeat)
 	}, [isPlaying, audioRef, repeat])
 
+	const getRandomTrack = useCallback(() => {
+		let randomIndex
+
+		do {
+			randomIndex = Math.floor(Math.random() * tracks.length)
+		} while (randomIndex === trackIndex)
+
+		setTrackIndex(randomIndex)
+		setCurrentTrack(tracks[randomIndex])
+	}, [setCurrentTrack, setTrackIndex, trackIndex, tracks])
+
 	const handleNext = useCallback(() => {
 		if (trackIndex >= tracks.length - 1) {
 			setTrackIndex(0)
 			setCurrentTrack(tracks[0])
 		} else {
-			setTrackIndex(prev => prev + 1)
-			setCurrentTrack(tracks[trackIndex + 1])
+			if (isRandom) {
+				getRandomTrack()
+			} else {
+				setTrackIndex(prev => prev + 1)
+				setCurrentTrack(tracks[trackIndex + 1])
+			}
 		}
-	}, [setCurrentTrack, setTrackIndex, trackIndex, tracks])
+	}, [getRandomTrack, isRandom, setCurrentTrack, setTrackIndex, trackIndex, tracks])
+
+	const handleRepeat = () => {
+		if (audioRef.current) {
+			audioRef.current.currentTime = 0 // Устанавливаем текущее время в начало трека
+			audioRef.current.play() // Возобновляем воспроизведение
+		}
+	}
 
 	const handlePrevious = () => {
 		if (trackIndex === 0) {
@@ -167,17 +198,53 @@ const Controls: FC<ControlsProps> = ({
 						trackIndex,
 						setTrackIndex,
 						setCurrentTrack,
+						handleNext,
+						isRepeat,
+						handleRepeat,
 					}}
 				/>
 			</div>
-			<Volume
-				{...{
-					volume,
-					setVolume,
-					muteVolume,
-					setMuteVolume,
-				}}
-			/>
+			<div className={styles.right}>
+				<button
+					className={cn(styles.button, { [styles.active]: isLike })}
+					onClick={() => {
+						currentTrack && setLike(currentTrack)
+					}}
+				>
+					{isLike ? <AiFillHeart /> : <AiOutlineHeart />}
+				</button>
+				<button
+					className={cn(styles.button, { [styles.active]: isRepeat })}
+					onClick={() => setIsRepeat(!isRepeat)}
+					title='Повторять'
+				>
+					<IoRepeatOutline />
+				</button>
+
+				<button
+					className={cn(styles.button, { [styles.active]: isRandom })}
+					onClick={() => setIsRandom(!isRandom)}
+					title='В случайном порядке'
+				>
+					<IoShuffle />
+				</button>
+
+				<Volume
+					{...{
+						volume,
+						setVolume,
+						muteVolume,
+						setMuteVolume,
+					}}
+				/>
+				<button
+					className={styles.button}
+					onClick={() => setCurrentTrack(null)}
+					title='Закрыть плеер'
+				>
+					<IoCloseSharp />
+				</button>
+			</div>
 		</div>
 	)
 }

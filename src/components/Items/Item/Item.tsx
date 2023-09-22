@@ -51,7 +51,11 @@ const Item: FC<ItemProps> = ({
 			<div className={styles.idContainer}>
 				{isFocused ? (
 					item.id === currentTrack?.id ? (
-						<AiFillPauseCircle className={cl(styles.play, styles.active)} />
+						isPlaying ? (
+							<AiFillPauseCircle className={styles.play} />
+						) : (
+							<AiFillPlayCircle className={cl(styles.play, styles.active)} />
+						)
 					) : (
 						<AiFillPlayCircle className={styles.play} />
 					)
@@ -59,7 +63,7 @@ const Item: FC<ItemProps> = ({
 					isPlaying ? (
 						<div className={styles.is_play}></div>
 					) : (
-						<AiFillPauseCircle className={styles.play} />
+						<AiFillPlayCircle className={styles.play} />
 					)
 				) : (
 					<div className={styles.id}>{index + 1}</div>

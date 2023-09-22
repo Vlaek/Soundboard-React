@@ -4,5 +4,18 @@
 	left: 0;
 	width: 100%;
 	height: 72px;
+	transform: translateY(72px);
 	background-color: rgba(24, 24, 24, 0.9);
+
+	&_enter_done {
+		transform: translateY(0px);
+		transition: transform 0.2s ease-in-out;
+	}
+	&_exit {
+		transform: translateY(0px);
+	}
+	&_exit_active {
+		transform: translateY(72px);
+		transition: transform 0.4s ease-in-out;
+	}
 }

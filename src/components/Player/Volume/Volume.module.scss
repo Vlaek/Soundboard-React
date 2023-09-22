@@ -1,6 +1,7 @@
 .volume {
 	height: 100%;
-	width: 150px;
+	width: 50px;
+	margin-left: 15px;
 	position: relative;
 
 	input {
@@ -9,17 +10,19 @@
 	}
 }
 
-.btn_volume {
+.button {
+	width: 50px;
 	height: 100%;
 	font-size: 30px;
+
 	color: #787575;
 	background-color: inherit;
 	cursor: pointer;
 	transition: color 0.3s ease;
-	margin-left: 15px;
 
 	&:hover {
 		color: #dcdcdc;
+
 		+ .volumeContainer {
 			visibility: visible;
 			.inputContainer {
