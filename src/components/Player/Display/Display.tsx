@@ -26,6 +26,9 @@ const Display: FC<DisplayProps> = memo(
 
 		return (
 			<div className={styles.wrapper}>
+				<div className={styles.img}>
+					<img src={`/img/${currentTrack?.author}.png`} alt='' draggable={false} />
+				</div>
 				<div className={styles.text}>
 					<p className={styles.name}>{currentTrack && currentTrack.name}</p>
 					<p className={styles.author}>{currentTrack && currentTrack.author}</p>
