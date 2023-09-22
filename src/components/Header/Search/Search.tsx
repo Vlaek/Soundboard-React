@@ -1,5 +1,6 @@
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
+import useDebounce from '../../../hooks/useDebounce'
 import { IFilters } from '../../../types/types'
 import styles from './Search.module.scss'
 
@@ -10,6 +11,14 @@ interface SearchProps {
 
 const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 	const [isActive, setIsActive] = useState<boolean>(false)
+	const [query, setQuery] = useState<string>('')
+
+	const debouncedQuery = useDebounce(query, 500)
+
+	useEffect(() => {
+		setFilters({ ...filters, searchQuery: debouncedQuery })
+	}, [debouncedQuery, filters, setFilters])
+
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -29,7 +38,7 @@ const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 	}
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFilters({ ...filters, searchQuery: e.target.value })
+		setQuery(e.target.value)
 	}
 
 	return (
@@ -45,7 +54,7 @@ const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 				ref={inputRef}
 				onBlur={handleInputBlur}
 				style={{ visibility: isActive ? 'visible' : 'hidden' }}
-				value={filters.searchQuery}
+				value={query}
 				onChange={handleChange}
 			/>
 		</div>
