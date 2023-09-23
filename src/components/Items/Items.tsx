@@ -17,6 +17,8 @@ interface ItemsProps {
 	tracks: ITrack[]
 	filters: IFilters
 	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
+	isLoading: boolean
+	itemsError: string | boolean
 }
 
 const Items: FC<ItemsProps> = ({
@@ -30,6 +32,8 @@ const Items: FC<ItemsProps> = ({
 	tracks,
 	filters,
 	setFilters,
+	isLoading,
+	itemsError,
 }) => {
 	const [activeTab, setActiveTab] = useState('Главное')
 	const [activeSort, setActiveSort] = useState('')
@@ -134,21 +138,25 @@ const Items: FC<ItemsProps> = ({
 					)}
 				</div>
 			</div>
-			{tracks.map((item, index) => (
-				<Item
-					key={item.id}
-					item={item}
-					index={index}
-					like={likes.some(like => item === like)}
-					likes={likes}
-					setLike={setLike}
-					currentTrack={currentTrack}
-					setCurrentTrack={setCurrentTrack}
-					isPlaying={isPlaying}
-					setIsPlaying={setIsPlaying}
-					setTrackIndex={setTrackIndex}
-				/>
-			))}
+			{!isLoading ? (
+				tracks.map((item, index) => (
+					<Item
+						key={item.id}
+						item={item}
+						index={index}
+						like={likes.some(like => item === like)}
+						likes={likes}
+						setLike={setLike}
+						currentTrack={currentTrack}
+						setCurrentTrack={setCurrentTrack}
+						isPlaying={isPlaying}
+						setIsPlaying={setIsPlaying}
+						setTrackIndex={setTrackIndex}
+					/>
+				))
+			) : (
+				<div>is loading</div>
+			)}
 		</div>
 	)
 }

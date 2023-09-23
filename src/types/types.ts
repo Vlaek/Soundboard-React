@@ -20,3 +20,9 @@ export interface IFilters {
 	sort: string
 	searchQuery: string
 }
+
+export interface IUseFetching {
+	fetchItems: () => Promise<void>
+	isLoading: boolean
+	itemsError: string | boolean
+}

@@ -4,12 +4,14 @@ import Aside from './components/Aside/Aside'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Items from './components/Items/Items'
-import { IFilters, ITrack } from './types/types'
+import { IFilters, ITrack, IUseFetching } from './types/types'
 import Player from './components/Player/Player'
-import { data } from './components/Items/data'
 import { useFilter } from './hooks/useFilter'
+import DataService from './API/DataService'
+import { useFetching } from './hooks/useFetching'
 
 const App: FC = () => {
+	const [items, setItems] = useState([])
 	const [likes, setLikes] = useState<ITrack[]>([])
 	const [currentTrack, setCurrentTrack] = useState<ITrack | null>(null)
 
@@ -24,7 +26,17 @@ const App: FC = () => {
 		searchQuery: '',
 	})
 
-	const sortedAndFilteredItems = useFilter(data, filters, likes)
+	const { fetchItems, isLoading, itemsError }: IUseFetching = useFetching(async () => {
+		const response = await DataService.getAll()
+		setItems(response.data)
+	})
+
+	useEffect(() => {
+		fetchItems()
+		window.scrollTo(0, 0)
+	}, [])
+
+	const sortedAndFilteredItems = useFilter(items, filters, likes)
 
 	useEffect(() => {
 		const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
@@ -57,6 +69,8 @@ const App: FC = () => {
 							setTrackIndex,
 							filters,
 							setFilters,
+							isLoading,
+							itemsError,
 						}}
 						tracks={sortedAndFilteredItems}
 						setLike={onSetLike}
