@@ -4,7 +4,7 @@
 	left: 0;
 	width: 100%;
 	height: 72px;
-	transform: translateY(72px);
+	transform: translateY(74px);
 	background-color: rgba(24, 24, 24, 0.9);
 
 	&_enter_done {
@@ -15,7 +15,7 @@
 		transform: translateY(0px);
 	}
 	&_exit_active {
-		transform: translateY(72px);
+		transform: translateY(74px);
 		transition: transform 0.4s ease-in-out;
 	}
 }
