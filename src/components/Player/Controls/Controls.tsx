@@ -45,14 +45,15 @@ const Controls: FC<ControlsProps> = ({
 }) => {
 	const [volume, setVolume] = useState(10)
 	const [muteVolume, setMuteVolume] = useState(false)
+
 	const [isRandom, setIsRandom] = useState(false)
 	const [isRepeat, setIsRepeat] = useState(false)
+
+	const playAnimationRef = useRef<number | null>(null)
 
 	const togglePlayPause = useCallback(() => {
 		setIsPlaying(prev => !prev)
 	}, [setIsPlaying])
-
-	const playAnimationRef = useRef<number | null>(null)
 
 	const repeat = useCallback(() => {
 		const currentTime = audioRef.current?.currentTime
@@ -107,8 +108,8 @@ const Controls: FC<ControlsProps> = ({
 
 	const handleRepeat = () => {
 		if (audioRef.current) {
-			audioRef.current.currentTime = 0 // Устанавливаем текущее время в начало трека
-			audioRef.current.play() // Возобновляем воспроизведение
+			audioRef.current.currentTime = 0
+			audioRef.current.play()
 		}
 	}
 

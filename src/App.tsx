@@ -16,7 +16,20 @@ const App: FC = () => {
 	const [trackIndex, setTrackIndex] = useState(0)
 	const [isPlaying, setIsPlaying] = useState(false)
 
-	const [tracks] = useState(data)
+	const [filters, setFilters] = useState<IFilters>({
+		authorFilter: [],
+		explicitFilter: false,
+		likesFilter: false,
+		sort: '',
+		searchQuery: '',
+	})
+
+	const sortedAndFilteredItems = useFilter(data, filters, likes)
+
+	useEffect(() => {
+		const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
+		setTrackIndex(index)
+	}, [sortedAndFilteredItems, currentTrack?.id])
 
 	const onSetLike = (item: ITrack) => {
 		let isInArray = false
@@ -27,21 +40,6 @@ const App: FC = () => {
 		if (!isInArray) setLikes([...likes, item])
 	}
 
-	const [filters, setFilters] = useState<IFilters>({
-		authorFilter: [],
-		explicitFilter: false,
-		likesFilter: false,
-		sort: '',
-		searchQuery: '',
-	})
-
-	const sortedAndFilteredItems = useFilter(tracks, filters, likes)
-
-	useEffect(() => {
-		const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
-		setTrackIndex(index)
-	}, [sortedAndFilteredItems, currentTrack?.id])
-
 	return (
 		<div className='container'>
 			<Layout
@@ -50,16 +48,18 @@ const App: FC = () => {
 				footer={<Footer />}
 				main={
 					<Items
-						likes={likes}
-						setLike={onSetLike}
-						currentTrack={currentTrack}
-						setCurrentTrack={setCurrentTrack}
-						isPlaying={isPlaying}
-						setIsPlaying={setIsPlaying}
-						setTrackIndex={setTrackIndex}
+						{...{
+							likes,
+							currentTrack,
+							setCurrentTrack,
+							isPlaying,
+							setIsPlaying,
+							setTrackIndex,
+							filters,
+							setFilters,
+						}}
 						tracks={sortedAndFilteredItems}
-						filters={filters}
-						setFilters={setFilters}
+						setLike={onSetLike}
 					/>
 				}
 			/>

@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import styles from './Footer.module.scss'
 
-const Footer: FC = () => {
+const Footer: FC = memo(() => {
 	return (
 		<div className={styles.footer}>
 			<div className={styles.footer__left}>
@@ -23,6 +23,6 @@ const Footer: FC = () => {
 			</div>
 		</div>
 	)
-}
+})
 
 export default Footer

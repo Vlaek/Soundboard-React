@@ -18,7 +18,7 @@ const options: IOption[] = [
 	{ value: 'Геральт', label: 'Геральт из Ривии' },
 	{ value: 'Крестьянин', label: 'Крестьянин' },
 	{ value: 'Бандит', label: 'Бандит' },
-	{ value: 'Стража', label: 'Стража' },
+	{ value: 'Стражник', label: 'Стражник' },
 	{ value: 'Крестьянка', label: 'Крестьянка' },
 ]
 
