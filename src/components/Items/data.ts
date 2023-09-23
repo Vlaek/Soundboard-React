@@ -4,7 +4,7 @@ export const data = [
 		file: 'гроза мать ее.mp3',
 		name: 'Гроза, мать ее',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -12,7 +12,7 @@ export const data = [
 		file: 'ведьмак (стих).mp3',
 		name: 'Стих про ведьмака',
 		author: 'Крестьянин',
-		duration: '00:08',
+		duration: '00:09',
 		explicit: false,
 	},
 	{
@@ -20,7 +20,7 @@ export const data = [
 		file: 'веди себя прилично ведьмак.mp3',
 		name: 'Веди себя прилично',
 		author: 'Стража',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: true,
 	},
 	{
@@ -28,7 +28,7 @@ export const data = [
 		file: 'я пацифист.mp3',
 		name: 'Я пацифист',
 		author: 'Крестьянин',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -36,7 +36,7 @@ export const data = [
 		file: 'смех.mp3',
 		name: 'Смех',
 		author: 'Крестьянин',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: false,
 	},
 	{
@@ -44,7 +44,7 @@ export const data = [
 		file: 'бегут неуклюжие пешеходы по лужам.mp3',
 		name: 'Бегут неуклюжие пешеходы по лужам',
 		author: 'Крестьянин',
-		duration: '00:05',
+		duration: '00:06',
 		explicit: false,
 	},
 	{
@@ -52,7 +52,7 @@ export const data = [
 		file: 'бедняжечка.mp3',
 		name: 'Бедняжечка',
 		author: 'Крестьянка',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -60,7 +60,7 @@ export const data = [
 		file: 'боги спасите.mp3',
 		name: 'Боги спасите',
 		author: 'Крестьянин',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -68,7 +68,7 @@ export const data = [
 		file: 'веди себя прилично хулиган.mp3',
 		name: 'Веди себя прилично, хулиган',
 		author: 'Крестьянин',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: false,
 	},
 	{
@@ -76,7 +76,7 @@ export const data = [
 		file: 'вялый ты какой то тухлого мяса наелся.mp3',
 		name: 'Вялый ты какой-то',
 		author: 'Крестьянин',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: false,
 	},
 	{
@@ -84,7 +84,7 @@ export const data = [
 		file: 'глаза видят уши слышат уста молчат.mp3',
 		name: 'Глаза видят, уши слышат, уста молчат',
 		author: 'Крестьянин',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: false,
 	},
 	{
@@ -92,7 +92,7 @@ export const data = [
 		file: 'глазища у тебя змеиные а язык.mp3',
 		name: 'Глазища у тебя змеиные',
 		author: 'Крестьянка',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: true,
 	},
 	{
@@ -100,7 +100,7 @@ export const data = [
 		file: 'да благоволит тебе фортуна.mp3',
 		name: 'Да благоволит тебе фортуна',
 		author: 'Крестьянин',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -108,7 +108,7 @@ export const data = [
 		file: 'бывай.mp3',
 		name: 'Бывай',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -116,7 +116,7 @@ export const data = [
 		file: 'И что такого.mp3',
 		name: 'И что такого',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -124,7 +124,7 @@ export const data = [
 		file: 'Я хочу помочь нильфгаардской женщине.mp3',
 		name: 'Я хочу помочь нильфгаардской женщине',
 		author: 'Геральт',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: false,
 	},
 	{
@@ -132,7 +132,7 @@ export const data = [
 		file: 'Похоже дождь собирается.mp3',
 		name: 'Похоже, дождь собирается',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -140,7 +140,7 @@ export const data = [
 		file: 'Дождь.mp3',
 		name: 'Дождь',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -148,7 +148,7 @@ export const data = [
 		file: 'Жарко.mp3',
 		name: 'Жарко',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -156,7 +156,7 @@ export const data = [
 		file: 'Ветер.mp3',
 		name: 'Ну и ветер',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -164,7 +164,7 @@ export const data = [
 		file: 'Погода в самый раз.mp3',
 		name: 'Погода в самый раз',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -172,7 +172,7 @@ export const data = [
 		file: 'Распогодилось.mp3',
 		name: 'Распогодилось',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -180,7 +180,7 @@ export const data = [
 		file: 'Снег пошел.mp3',
 		name: 'Снег пошел',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -188,7 +188,7 @@ export const data = [
 		file: 'Холодает.mp3',
 		name: 'Холодает',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -196,7 +196,7 @@ export const data = [
 		file: 'Похоже шторм будет.mp3',
 		name: 'Похоже, шторм будет',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -204,7 +204,7 @@ export const data = [
 		file: 'Вот сука.mp3',
 		name: 'Вот сука',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: true,
 	},
 	{
@@ -212,7 +212,7 @@ export const data = [
 		file: 'Зараза.mp3',
 		name: 'Зараза',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -220,7 +220,7 @@ export const data = [
 		file: 'Иди сюда.mp3',
 		name: 'Иди, иди сюда',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -228,7 +228,7 @@ export const data = [
 		file: 'Мертв.mp3',
 		name: 'Мертв',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: true,
 	},
 	{
@@ -236,7 +236,7 @@ export const data = [
 		file: 'Не стоит.mp3',
 		name: 'Не стОит',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -244,7 +244,7 @@ export const data = [
 		file: 'Неплохо.mp3',
 		name: 'Неплохо',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -252,7 +252,7 @@ export const data = [
 		file: 'Никак вы, блядь, не научитесь.mp3',
 		name: 'Никак вы, бл*дь, не научитесь',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: true,
 	},
 	{
@@ -260,7 +260,7 @@ export const data = [
 		file: 'Давай.mp3',
 		name: 'Давай',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -268,7 +268,7 @@ export const data = [
 		file: 'Ну что паскуда.mp3',
 		name: 'Ну что, паскуда',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -276,7 +276,7 @@ export const data = [
 		file: 'Ох и гнусный же ты.mp3',
 		name: 'Ох и гнусный же ты',
 		author: 'Геральт',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -284,7 +284,7 @@ export const data = [
 		file: 'Покончим с этим.mp3',
 		name: 'Покончим с этим',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -292,7 +292,7 @@ export const data = [
 		file: 'Пора заканчивать.mp3',
 		name: 'Пора заканчивать',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -300,7 +300,7 @@ export const data = [
 		file: 'Сдохни.mp3',
 		name: 'Сдохни!',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: true,
 	},
 	{
@@ -308,7 +308,7 @@ export const data = [
 		file: 'У тебя сегодня плохой день.mp3',
 		name: 'У тебя сегодня плохой день',
 		author: 'Геральт',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -316,7 +316,7 @@ export const data = [
 		file: 'и слушать об этом не хочу.mp3',
 		name: 'И слушать об этом не хочу',
 		author: 'Крестьянка',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -324,7 +324,7 @@ export const data = [
 		file: 'куда спешишь удалец.mp3',
 		name: 'Куда спешишь, удалец',
 		author: 'Крестьянка',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -332,7 +332,7 @@ export const data = [
 		file: 'мой ответ нет.mp3',
 		name: 'Мой ответ - нет',
 		author: 'Крестьянка',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: false,
 	},
 	{
@@ -340,7 +340,7 @@ export const data = [
 		file: 'морду у тебя перекосило.mp3',
 		name: 'Морду у тебя перекосило',
 		author: 'Крестьянка',
-		duration: '00:05',
+		duration: '00:06',
 		explicit: false,
 	},
 	{
@@ -348,7 +348,7 @@ export const data = [
 		file: 'мяу мр.mp3',
 		name: 'Мяу',
 		author: 'Крестьянка',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: false,
 	},
 	{
@@ -356,7 +356,7 @@ export const data = [
 		file: 'ну я и влажная.mp3',
 		name: 'Ну я и влажная',
 		author: 'Крестьянка',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: true,
 	},
 	{
@@ -372,7 +372,7 @@ export const data = [
 		file: 'привет мрачненький.mp3',
 		name: 'Привет, мрачненький',
 		author: 'Крестьянка',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -380,7 +380,7 @@ export const data = [
 		file: 'Смех (ж).mp3',
 		name: 'Смех',
 		author: 'Крестьянка',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: false,
 	},
 	{
@@ -388,7 +388,7 @@ export const data = [
 		file: 'хорошо сегодня выглядишь.mp3',
 		name: 'Хорошо сегодня выглядишь',
 		author: 'Крестьянка',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -396,7 +396,7 @@ export const data = [
 		file: 'Сгниешь в подземелье паршивец.mp3',
 		name: 'Сгниешь в подземелье, паршивец',
 		author: 'Стража',
-		duration: '00:03',
+		duration: '00:04',
 		explicit: true,
 	},
 	{
@@ -404,7 +404,7 @@ export const data = [
 		file: 'сдавайся.mp3',
 		name: 'Сдавайся',
 		author: 'Стража',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 	{
@@ -412,7 +412,7 @@ export const data = [
 		file: 'сдохни (с).mp3',
 		name: 'Сдохни',
 		author: 'Стража',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: true,
 	},
 	{
@@ -420,7 +420,7 @@ export const data = [
 		file: 'я буду за тобой приглядывать белоголовый.mp3',
 		name: 'Я буду за тобой приглядывать, белоголовый',
 		author: 'Стража',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: false,
 	},
 	{
@@ -428,7 +428,7 @@ export const data = [
 		file: 'спокойней, минутку, минутку.mp3',
 		name: 'Cпокойней, минутку, минутку',
 		author: 'Стража',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: false,
 	},
 	{
@@ -436,7 +436,7 @@ export const data = [
 		file: 'Таких как ты вообще в новиград впускать нельзя.mp3',
 		name: 'Таких как ты вообще в новиград впускать нельзя',
 		author: 'Стража',
-		duration: '00:04',
+		duration: '00:05',
 		explicit: true,
 	},
 	{
@@ -444,7 +444,7 @@ export const data = [
 		file: 'ты труп труп.mp3',
 		name: 'Ты труп труп',
 		author: 'Стража',
-		duration: '00:02',
+		duration: '00:03',
 		explicit: true,
 	},
 	{
@@ -452,7 +452,7 @@ export const data = [
 		file: 'хватит хватит.mp3',
 		name: 'Хватит, хватит',
 		author: 'Стража',
-		duration: '00:01',
+		duration: '00:02',
 		explicit: false,
 	},
 ]

@@ -1,8 +1,8 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
 import { MdExplicit } from 'react-icons/md'
 import styles from './Item.module.scss'
-import cl from 'classnames'
+import cn from 'classnames'
 import { ITrack } from '../../../types/types'
 
 interface ItemProps {
@@ -29,8 +29,6 @@ const Item: FC<ItemProps> = ({
 	setIsPlaying,
 	setTrackIndex,
 }) => {
-	const [isFocused, setIsFocused] = useState<boolean>(false)
-
 	const handleClick = (item: ITrack) => {
 		if (currentTrack !== item) {
 			setCurrentTrack(item)
@@ -42,32 +40,30 @@ const Item: FC<ItemProps> = ({
 	}
 
 	return (
-		<div
-			className={styles.item}
-			onClick={() => handleClick(item)}
-			onMouseEnter={() => setIsFocused(true)}
-			onMouseLeave={() => setIsFocused(false)}
-		>
+		<div className={styles.item} onClick={() => handleClick(item)}>
 			<div className={styles.idContainer}>
-				{isFocused ? (
-					item.id === currentTrack?.id ? (
+				<div className={styles.idIsFocused}>
+					{item.id === currentTrack?.id ? (
 						isPlaying ? (
 							<AiFillPauseCircle className={styles.play} />
 						) : (
-							<AiFillPlayCircle className={cl(styles.play, styles.active)} />
+							<AiFillPlayCircle className={cn(styles.play, styles.active)} />
 						)
 					) : (
 						<AiFillPlayCircle className={styles.play} />
-					)
-				) : item.id === currentTrack?.id ? (
-					isPlaying ? (
-						<div className={styles.is_play}></div>
+					)}
+				</div>
+				<div className={styles.idIsNotFocused}>
+					{item.id === currentTrack?.id ? (
+						isPlaying ? (
+							<div className={styles.is_play}></div>
+						) : (
+							<AiFillPlayCircle className={styles.play} />
+						)
 					) : (
-						<AiFillPlayCircle className={styles.play} />
-					)
-				) : (
-					<div className={styles.id}>{index + 1}</div>
-				)}
+						<div className={styles.id}>{index + 1}</div>
+					)}
+				</div>
 			</div>
 			<div className={styles.name} title={item.name}>
 				{item.name}

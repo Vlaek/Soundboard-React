@@ -43,6 +43,10 @@ const MultiSelect: FC<MultiSelectProps> = ({ filters, setFilters }) => {
 			border: state.isFocused ? 0 : 0,
 			boxShadow: state.isFocused ? 'none' : 'none',
 		}),
+		menuList: base => ({
+			...base,
+			padding: 0,
+		}),
 	}
 
 	return (

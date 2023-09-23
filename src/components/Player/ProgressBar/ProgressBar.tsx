@@ -40,7 +40,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			</div>
 
 			<span className={styles.currentTime}>{formatTime(timeProgress)}</span>
-			<span className={styles.time}>{formatTime(duration)}</span>
+			<span className={styles.time}>{formatTime(duration + 1)}</span>
 			<div className={styles.input}>
 				<input type='range' ref={progressBarRef} defaultValue='0' onChange={handleProgressChange} />
 			</div>

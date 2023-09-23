@@ -13,7 +13,19 @@
 		.id {
 			display: none;
 		}
+
+		.idIsFocused {
+			display: block;
+		}
+
+		.idIsNotFocused {
+			display: none;
+		}
 	}
+}
+
+.idIsFocused {
+	display: none;
 }
 
 .idContainer {

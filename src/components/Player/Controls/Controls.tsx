@@ -239,7 +239,10 @@ const Controls: FC<ControlsProps> = ({
 				/>
 				<button
 					className={styles.button}
-					onClick={() => setCurrentTrack(null)}
+					onClick={() => {
+						togglePlayPause()
+						setCurrentTrack(null)
+					}}
 					title='Закрыть плеер'
 				>
 					<IoCloseSharp />
