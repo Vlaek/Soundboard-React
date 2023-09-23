@@ -4,11 +4,11 @@ import Aside from './components/Aside/Aside'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Items from './components/Items/Items'
-import { IFilters, ITrack, IUseFetching } from './types/types'
 import Player from './components/Player/Player'
-import { useFilter } from './hooks/useFilter'
 import DataService from './API/DataService'
+import { useFilter } from './hooks/useFilter'
 import { useFetching } from './hooks/useFetching'
+import { IFilters, ITrack, IUseFetching } from './types/types'
 
 const App: FC = () => {
 	const [items, setItems] = useState([])
@@ -33,7 +33,6 @@ const App: FC = () => {
 
 	useEffect(() => {
 		fetchItems()
-		window.scrollTo(0, 0)
 	}, [])
 
 	const sortedAndFilteredItems = useFilter(items, filters, likes)
@@ -79,13 +78,13 @@ const App: FC = () => {
 			/>
 			<Player
 				{...{
-					trackIndex,
-					setTrackIndex,
-					setCurrentTrack,
+					likes,
 					currentTrack,
+					setCurrentTrack,
 					isPlaying,
 					setIsPlaying,
-					likes,
+					trackIndex,
+					setTrackIndex,
 				}}
 				tracks={sortedAndFilteredItems}
 				setLike={onSetLike}

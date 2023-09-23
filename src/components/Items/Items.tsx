@@ -1,5 +1,7 @@
 import { FC, useCallback, useState } from 'react'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import Item from './Item/Item'
 import cn from 'classnames'
 import styles from './Items.module.scss'
@@ -139,23 +141,29 @@ const Items: FC<ItemsProps> = ({
 				</div>
 			</div>
 			{!isLoading ? (
-				tracks.map((item, index) => (
-					<Item
-						key={item.id}
-						item={item}
-						index={index}
-						like={likes.some(like => item === like)}
-						likes={likes}
-						setLike={setLike}
-						currentTrack={currentTrack}
-						setCurrentTrack={setCurrentTrack}
-						isPlaying={isPlaying}
-						setIsPlaying={setIsPlaying}
-						setTrackIndex={setTrackIndex}
-					/>
-				))
+				!itemsError ? (
+					tracks.map((item, index) => (
+						<Item
+							key={item.id}
+							item={item}
+							index={index}
+							like={likes.some(like => item === like)}
+							likes={likes}
+							setLike={setLike}
+							currentTrack={currentTrack}
+							setCurrentTrack={setCurrentTrack}
+							isPlaying={isPlaying}
+							setIsPlaying={setIsPlaying}
+							setTrackIndex={setTrackIndex}
+						/>
+					))
+				) : (
+					<div className={styles.error}>Произошла ошибка при загрузке</div>
+				)
 			) : (
-				<div>is loading</div>
+				<SkeletonTheme baseColor='#202020' highlightColor='#444' height={40} enableAnimation={true}>
+					<Skeleton count={12} />
+				</SkeletonTheme>
 			)}
 		</div>
 	)
