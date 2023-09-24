@@ -1,27 +1,57 @@
-# React + TypeScript + Vite
+# Описание
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[**Soundboard**](https://vlaek.github.io/Soundboard-React/) - веб-приложение, разработанное с использованием React, предоставляющее возможность пользователям прослушивать треки. Проект создан в качестве учебной и практической задачи, чтобы продемонстрировать навыки разработки фронтенда с использованием React и связанных технологий.
 
-Currently, two official plugins are available:
+## Используемые сервисы
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Дизайна взят с Яндекс Музыки
+- Данные о треках хранятся в mockAPI
+- Звуковые дорожки взяты из игры The Witcher 3
 
-## Expanding the ESLint configuration
+# Основные функции и компоненты проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Фильтрация и сортировка
 
-- Configure the top-level `parserOptions` property like this:
+- Фильтрация по разделам:
+  - Раздел "Главное" содержит все треки
+  - Раздел "Коллекция" содержит треки, которые понравились пользователю
+  - Раздел "Для детей" исключает непригодные для детей треки
+- Фильтрация по исполнителям
+- Фильтрация по поиску
+- Сортировка по названию, исполнителю (в обе стороны)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Функциональность плеера
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Пауза / возобновление проигрывания
+- Переключение треков (в обе стороны)
+- Перемотка трека на 5 секунд (в обе стороны)
+- Изменение громкости
+- Режим повтора одного трека
+- Режим проигрывания треков в случайном порядке
+- Добавление в "Коллекцию"
+- Выключение плеера
+
+## Рекламные баннеры
+
+- Два случайных баннера моих пет-проектов
+
+# Технологии
+
+- HTML, CSS, SASS, JavaScript, React, TypeScript
+- React Icons
+- React Select
+- React Transition Group
+- React Loading Skeleton
+- Axios
+- classnames
+- gh-pages
+
+# Иллюстрации
+
+## Главная страница
+
+![Главная страница](https://media.giphy.com/media/to1rnY8vRmKdPreqiO/giphy.gif 'Главная страница')
+
+## Сортировка и фильтрация
+
+![Сортировка и фильтрация](https://media.giphy.com/media/SHdYpqWAZa0kSAZxqo/giphy.gif 'Сортировка и фильтрация')
