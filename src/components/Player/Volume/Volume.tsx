@@ -27,6 +27,7 @@ const Volume: FC<VolumeProps> = memo(({ volume, setVolume, muteVolume, setMuteVo
 			</button>
 			<div className={styles.volumeContainer}>
 				<div className={styles.inputContainer}>
+					<div className={styles.percent}>{volume}</div>
 					<input
 						type='range'
 						min={0}

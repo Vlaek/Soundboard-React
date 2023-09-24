@@ -60,4 +60,14 @@
 	border-radius: 15px;
 	transition: opacity 0.3s ease;
 	opacity: 0;
+	position: relative;
+}
+
+.percent {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	user-select: none;
 }

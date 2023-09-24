@@ -42,7 +42,7 @@ const Controls: FC<ControlsProps> = ({
 		state.likes.some(like => like.id === currentTrack?.id),
 	)
 
-	const [volume, setVolume] = useState(10)
+	const [volume, setVolume] = useState(50)
 	const [muteVolume, setMuteVolume] = useState(false)
 
 	const [isRandom, setIsRandom] = useState(false)
@@ -70,6 +70,15 @@ const Controls: FC<ControlsProps> = ({
 			playAnimationRef.current = requestAnimationFrame(repeat)
 		}
 	}, [audioRef, duration, progressBarRef, setTimeProgress, progressRef])
+
+	useEffect(() => {
+		if (audioRef) {
+			if (audioRef.current) {
+				audioRef.current.volume = volume / 100
+				audioRef.current.muted = muteVolume
+			}
+		}
+	}, [volume, audioRef, muteVolume, isPlaying])
 
 	useEffect(() => {
 		if (isPlaying) {
@@ -139,15 +148,6 @@ const Controls: FC<ControlsProps> = ({
 	const skipBackward = useCallback(() => {
 		if (audioRef.current) audioRef.current.currentTime -= 5
 	}, [audioRef])
-
-	useEffect(() => {
-		if (audioRef) {
-			if (audioRef.current) {
-				audioRef.current.volume = volume / 100
-				audioRef.current.muted = muteVolume
-			}
-		}
-	}, [volume, audioRef, muteVolume])
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
