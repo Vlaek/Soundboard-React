@@ -1,4 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsPlaying } from '../../../store/actions/isPlaying'
 import { IoRepeatOutline, IoShuffle, IoCloseSharp } from 'react-icons/io5'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { ITrack } from '../../../types/types'
@@ -7,6 +9,10 @@ import Buttons from '../Buttons/Buttons'
 import Volume from './../Volume/Volume'
 import cn from 'classnames'
 import styles from './Controls.module.scss'
+import { RootState } from '../../../store/store'
+import { setTrackIndex } from './../../../store/actions/trackIndex'
+import { setLike } from './../../../store/actions/likes'
+import { setCurrentTrack } from '../../../store/actions/currentTrack'
 
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>
@@ -14,16 +20,8 @@ interface ControlsProps {
 	duration: number
 	setTimeProgress: (duration: number) => void
 	tracks: ITrack[]
-	trackIndex: number
-	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
-	setCurrentTrack: React.Dispatch<React.SetStateAction<ITrack | null>>
 	progressRef: React.RefObject<HTMLDivElement>
-	currentTrack: ITrack | null
 	setDuration: React.Dispatch<React.SetStateAction<number>>
-	isPlaying: boolean
-	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
-	isLike: boolean
-	setLike: (like: ITrack) => void
 }
 
 const Controls: FC<ControlsProps> = ({
@@ -32,17 +30,18 @@ const Controls: FC<ControlsProps> = ({
 	duration,
 	setTimeProgress,
 	tracks,
-	trackIndex,
-	setTrackIndex,
-	setCurrentTrack,
 	progressRef,
-	currentTrack,
 	setDuration,
-	isPlaying,
-	setIsPlaying,
-	isLike,
-	setLike,
 }) => {
+	const dispatch = useDispatch()
+
+	const trackIndex = useSelector((state: RootState) => state.trackIndex)
+	const isPlaying = useSelector((state: RootState) => state.isPlaying)
+	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+	const isLiked = useSelector((state: RootState) =>
+		state.likes.some(like => like.id === currentTrack?.id),
+	)
+
 	const [volume, setVolume] = useState(10)
 	const [muteVolume, setMuteVolume] = useState(false)
 
@@ -52,8 +51,8 @@ const Controls: FC<ControlsProps> = ({
 	const playAnimationRef = useRef<number | null>(null)
 
 	const togglePlayPause = useCallback(() => {
-		setIsPlaying(prev => !prev)
-	}, [setIsPlaying])
+		dispatch(setIsPlaying(!isPlaying))
+	}, [dispatch, isPlaying])
 
 	const repeat = useCallback(() => {
 		const currentTime = audioRef.current?.currentTime
@@ -88,23 +87,23 @@ const Controls: FC<ControlsProps> = ({
 			randomIndex = Math.floor(Math.random() * tracks.length)
 		} while (randomIndex === trackIndex)
 
-		setTrackIndex(randomIndex)
-		setCurrentTrack(tracks[randomIndex])
-	}, [setCurrentTrack, setTrackIndex, trackIndex, tracks])
+		dispatch(setTrackIndex(randomIndex))
+		dispatch(setCurrentTrack(tracks[randomIndex]))
+	}, [dispatch, trackIndex, tracks])
 
 	const handleNext = useCallback(() => {
 		if (trackIndex >= tracks.length - 1) {
 			setTrackIndex(0)
-			setCurrentTrack(tracks[0])
+			dispatch(setCurrentTrack(tracks[0]))
 		} else {
 			if (isRandom) {
 				getRandomTrack()
 			} else {
-				setTrackIndex(prev => prev + 1)
-				setCurrentTrack(tracks[trackIndex + 1])
+				dispatch(setTrackIndex(trackIndex + 1))
+				dispatch(setCurrentTrack(tracks[trackIndex + 1]))
 			}
 		}
-	}, [getRandomTrack, isRandom, setCurrentTrack, setTrackIndex, trackIndex, tracks])
+	}, [dispatch, getRandomTrack, isRandom, trackIndex, tracks])
 
 	const handleRepeat = () => {
 		if (audioRef.current) {
@@ -117,10 +116,10 @@ const Controls: FC<ControlsProps> = ({
 		if (trackIndex === 0) {
 			const lastTrackIndex = tracks.length - 1
 			setTrackIndex(lastTrackIndex)
-			setCurrentTrack(tracks[lastTrackIndex])
+			dispatch(setCurrentTrack(tracks[lastTrackIndex]))
 		} else {
-			setTrackIndex(prev => prev - 1)
-			setCurrentTrack(tracks[trackIndex - 1])
+			dispatch(setTrackIndex(trackIndex - 1))
+			dispatch(setCurrentTrack(tracks[trackIndex - 1]))
 		}
 		if (!isPlaying) {
 			setIsPlaying(true)
@@ -191,14 +190,12 @@ const Controls: FC<ControlsProps> = ({
 				/>
 				<Display
 					{...{
-						currentTrack,
 						audioRef,
 						setDuration,
 						progressBarRef,
 						tracks,
 						trackIndex,
 						setTrackIndex,
-						setCurrentTrack,
 						handleNext,
 						isRepeat,
 						handleRepeat,
@@ -207,12 +204,12 @@ const Controls: FC<ControlsProps> = ({
 			</div>
 			<div className={styles.right}>
 				<button
-					className={cn(styles.button, { [styles.active]: isLike })}
+					className={cn(styles.button, { [styles.active]: isLiked })}
 					onClick={() => {
-						currentTrack && setLike(currentTrack)
+						currentTrack && dispatch(setLike(currentTrack))
 					}}
 				>
-					{isLike ? <AiFillHeart /> : <AiOutlineHeart />}
+					{isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 				<button
 					className={cn(styles.button, { [styles.active]: isRepeat })}
@@ -242,7 +239,7 @@ const Controls: FC<ControlsProps> = ({
 					className={styles.button}
 					onClick={() => {
 						togglePlayPause()
-						setCurrentTrack(null)
+						dispatch(setCurrentTrack(null))
 					}}
 					title='Закрыть плеер'
 				>

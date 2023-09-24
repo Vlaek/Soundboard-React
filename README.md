@@ -42,6 +42,7 @@
 - React Select
 - React Transition Group
 - React Loading Skeleton
+- Redux
 - Axios
 - classnames
 - gh-pages

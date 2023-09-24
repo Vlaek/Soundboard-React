@@ -1,17 +1,14 @@
 import { FC, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './MultiSelect.module.scss'
 import Select, { MultiValue, StylesConfig, GroupBase } from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { IFilters } from './../../../types/types'
+import { RootState } from '../../../store/store'
+import { setFilters } from '../../../store/actions/filters'
 
 interface IOption {
 	value: string
 	label: string
-}
-
-interface MultiSelectProps {
-	filters: IFilters
-	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
 }
 
 const options: IOption[] = [
@@ -22,7 +19,10 @@ const options: IOption[] = [
 	{ value: 'Крестьянка', label: 'Крестьянка' },
 ]
 
-const MultiSelect: FC<MultiSelectProps> = ({ filters, setFilters }) => {
+const MultiSelect: FC = () => {
+	const dispatch = useDispatch()
+	const filters = useSelector((state: RootState) => state.filters)
+
 	const [option, setOption] = useState<MultiValue<IOption> | null>(null)
 
 	const noOptionsMessage = () => 'Нет доступных вариантов'
@@ -33,7 +33,7 @@ const MultiSelect: FC<MultiSelectProps> = ({ filters, setFilters }) => {
 		if (option && option.length <= 3) {
 			setOption(option)
 			const values = option.map(item => item.value)
-			setFilters({ ...filters, authorFilter: values })
+			dispatch(setFilters({ ...filters, authorFilter: values }))
 		}
 	}
 

@@ -1,4 +1,5 @@
 import { FC, useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -6,37 +7,19 @@ import Item from './Item/Item'
 import cn from 'classnames'
 import styles from './Items.module.scss'
 import { ITrack } from '../../types/types'
-import { IFilters } from './../../types/types'
+import { RootState } from '../../store/store'
+import { setFilters } from './../../store/actions/filters'
 
 interface ItemsProps {
-	likes: ITrack[]
-	setLike: (like: ITrack) => void
-	currentTrack: ITrack | null
-	setCurrentTrack: (like: ITrack) => void
-	isPlaying: boolean
-	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
-	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 	tracks: ITrack[]
-	filters: IFilters
-	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
 	isLoading: boolean
 	itemsError: string | boolean
 }
 
-const Items: FC<ItemsProps> = ({
-	likes,
-	setLike,
-	currentTrack,
-	setCurrentTrack,
-	isPlaying,
-	setIsPlaying,
-	setTrackIndex,
-	tracks,
-	filters,
-	setFilters,
-	isLoading,
-	itemsError,
-}) => {
+const Items: FC<ItemsProps> = ({ tracks, isLoading, itemsError }) => {
+	const dispatch = useDispatch()
+	const filters = useSelector((state: RootState) => state.filters)
+
 	const [activeTab, setActiveTab] = useState('Главное')
 	const [activeSort, setActiveSort] = useState('')
 
@@ -44,26 +27,26 @@ const Items: FC<ItemsProps> = ({
 		(tab: string) => {
 			switch (tab) {
 				case 'Коллекция':
-					setFilters({ ...filters, likesFilter: true, explicitFilter: false })
+					dispatch(setFilters({ ...filters, likesFilter: true, explicitFilter: false }))
 					break
 				case 'Для детей':
-					setFilters({ ...filters, explicitFilter: true, likesFilter: false })
+					dispatch(setFilters({ ...filters, explicitFilter: true, likesFilter: false }))
 					break
 				default:
-					setFilters({ ...filters, explicitFilter: false, likesFilter: false })
+					dispatch(setFilters({ ...filters, explicitFilter: false, likesFilter: false }))
 					break
 			}
 			setActiveTab(tab)
 		},
-		[filters, setFilters],
+		[dispatch, filters],
 	)
 
 	const handleSortClick = useCallback(
 		(sort: string) => {
-			setFilters({ ...filters, sort: sort })
+			dispatch(setFilters({ ...filters, sort: sort }))
 			setActiveSort(sort)
 		},
-		[filters, setFilters],
+		[dispatch, filters],
 	)
 
 	return (
@@ -142,21 +125,7 @@ const Items: FC<ItemsProps> = ({
 			</div>
 			{!isLoading ? (
 				!itemsError ? (
-					tracks.map((item, index) => (
-						<Item
-							key={item.id}
-							item={item}
-							index={index}
-							like={likes.some(like => item === like)}
-							likes={likes}
-							setLike={setLike}
-							currentTrack={currentTrack}
-							setCurrentTrack={setCurrentTrack}
-							isPlaying={isPlaying}
-							setIsPlaying={setIsPlaying}
-							setTrackIndex={setTrackIndex}
-						/>
-					))
+					tracks.map((item, index) => <Item key={item.id} item={item} index={index} />)
 				) : (
 					<div className={styles.error}>Произошла ошибка при загрузке</div>
 				)

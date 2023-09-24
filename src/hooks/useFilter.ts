@@ -1,9 +1,13 @@
 import { useState, useCallback, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store/store'
 import { ITrack } from '../types/types'
-import { IFilters } from './../types/types'
 import useDebounce from './useDebounce'
 
-export const useFilter = (tracks: ITrack[], filters: IFilters, likes: ITrack[]) => {
+export const useFilter = (tracks: ITrack[]) => {
+	const likes = useSelector((state: RootState) => state.likes)
+	const filters = useSelector((state: RootState) => state.filters)
+
 	const [items, setItems] = useState<ITrack[]>(tracks)
 
 	const debouncedQuery = useDebounce(filters.searchQuery, 500)

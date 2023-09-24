@@ -4,30 +4,16 @@ import Controls from './Controls/Controls'
 import ProgressBar from './ProgressBar/ProgressBar'
 import { ITrack } from '../../types/types'
 import { CSSTransition } from 'react-transition-group'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store/store'
 
 interface PlayerProps {
-	currentTrack: ITrack | null
-	setCurrentTrack: React.Dispatch<React.SetStateAction<ITrack | null>>
-	trackIndex: number
-	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
-	isPlaying: boolean
-	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
 	tracks: ITrack[]
-	likes: ITrack[]
-	setLike: (like: ITrack) => void
 }
 
-const Player: FC<PlayerProps> = ({
-	currentTrack,
-	setCurrentTrack,
-	trackIndex,
-	setTrackIndex,
-	isPlaying,
-	setIsPlaying,
-	tracks,
-	likes,
-	setLike,
-}) => {
+const Player: FC<PlayerProps> = ({ tracks }) => {
+	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+
 	const [timeProgress, setTimeProgress] = useState(0)
 	const [duration, setDuration] = useState(0)
 
@@ -56,17 +42,9 @@ const Player: FC<PlayerProps> = ({
 						duration,
 						setTimeProgress,
 						tracks,
-						trackIndex,
-						setTrackIndex,
-						setCurrentTrack,
 						progressRef,
-						currentTrack,
 						setDuration,
-						isPlaying,
-						setIsPlaying,
-						setLike,
 					}}
-					isLike={likes.some(like => currentTrack?.id === like.id)}
 				/>
 			</div>
 		</CSSTransition>

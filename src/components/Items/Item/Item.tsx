@@ -1,41 +1,35 @@
 import { FC } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
 import { MdExplicit } from 'react-icons/md'
 import styles from './Item.module.scss'
 import cn from 'classnames'
 import { ITrack } from '../../../types/types'
+import { RootState } from '../../../store/store'
+import { setIsPlaying } from '../../../store/actions/isPlaying'
+import { setTrackIndex } from './../../../store/actions/trackIndex'
+import { setLike } from './../../../store/actions/likes'
+import { setCurrentTrack } from './../../../store/actions/currentTrack'
 
 interface ItemProps {
 	item: ITrack
 	index: number
-	like: boolean
-	likes: ITrack[]
-	setLike: (like: ITrack) => void
-	currentTrack: ITrack | null
-	setCurrentTrack: (like: ITrack) => void
-	isPlaying: boolean
-	setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
-	setTrackIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-const Item: FC<ItemProps> = ({
-	item,
-	index,
-	like,
-	setLike,
-	currentTrack,
-	setCurrentTrack,
-	isPlaying,
-	setIsPlaying,
-	setTrackIndex,
-}) => {
+const Item: FC<ItemProps> = ({ item, index }) => {
+	const dispatch = useDispatch()
+
+	const isPlaying = useSelector((state: RootState) => state.isPlaying)
+	const isLiked = useSelector((state: RootState) => state.likes.some(like => like.id === item.id))
+	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+
 	const handleClick = (item: ITrack) => {
 		if (currentTrack !== item) {
-			setCurrentTrack(item)
-			setTrackIndex(item.id)
-			setIsPlaying(true)
+			dispatch(setCurrentTrack(item))
+			dispatch(setTrackIndex(item.id))
+			dispatch(setIsPlaying(true))
 		} else {
-			setIsPlaying(!isPlaying)
+			dispatch(setIsPlaying(!isPlaying))
 		}
 	}
 
@@ -87,15 +81,15 @@ const Item: FC<ItemProps> = ({
 					className={styles.like}
 					onClick={e => {
 						e.stopPropagation()
-						setLike(item)
+						dispatch(setLike(item))
 					}}
 					title={
-						like
+						isLiked
 							? 'Вам нравится этот трек, а еще он добавлен в раздел "Коллекция"'
 							: 'Добавьте трек в раздел "Коллекция"'
 					}
 				>
-					{like ? <AiFillHeart /> : <AiOutlineHeart />}
+					{isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
 				</div>
 				<div className={styles.duration}>{item.duration}</div>
 			</div>

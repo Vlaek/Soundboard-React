@@ -1,14 +1,14 @@
 import { FC, useRef, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { IFilters } from '../../../types/types'
 import styles from './Search.module.scss'
+import { RootState } from '../../../store/store'
+import { setFilters } from './../../../store/actions/filters'
 
-interface SearchProps {
-	filters: IFilters
-	setFilters: React.Dispatch<React.SetStateAction<IFilters>>
-}
+const Search: FC = () => {
+	const dispatch = useDispatch()
+	const filters = useSelector((state: RootState) => state.filters)
 
-const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 	const [isActive, setIsActive] = useState<boolean>(false)
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -29,7 +29,7 @@ const Search: FC<SearchProps> = ({ filters, setFilters }) => {
 	}
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFilters({ ...filters, searchQuery: e.target.value })
+		dispatch(setFilters({ ...filters, searchQuery: e.target.value }))
 	}
 
 	return (

@@ -1,9 +1,9 @@
 import { FC, memo } from 'react'
-import { ITrack } from '../../../types/types'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../store/store'
 import styles from './Display.module.scss'
 
 interface DisplayProps {
-	currentTrack: ITrack | null
 	audioRef: React.RefObject<HTMLAudioElement>
 	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
@@ -13,7 +13,9 @@ interface DisplayProps {
 }
 
 const Display: FC<DisplayProps> = memo(
-	({ currentTrack, audioRef, setDuration, progressBarRef, handleNext, isRepeat, handleRepeat }) => {
+	({ audioRef, setDuration, progressBarRef, handleNext, isRepeat, handleRepeat }) => {
+		const currentTrack = useSelector((state: RootState) => state.currentTrack)
+
 		const onLoadedMetadata = () => {
 			const seconds = audioRef.current?.duration
 			if (seconds) {
