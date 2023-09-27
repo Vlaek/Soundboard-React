@@ -61,6 +61,7 @@ const MultiSelect: FC = () => {
 			placeholder='Выбрать...'
 			components={animatedComponents}
 			noOptionsMessage={noOptionsMessage}
+			isOptionDisabled={() => (option && option.length >= 3 ? true : false)}
 		/>
 	)
 }

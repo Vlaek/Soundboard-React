@@ -2,6 +2,14 @@
 	flex: 0 1 25%;
 	height: 40px;
 	position: relative;
+
+	@media (max-width: 992px) {
+		grid-area: i;
+	}
+
+	@media (max-width: 576px) {
+		height: 30px;
+	}
 }
 
 .btn {
@@ -14,6 +22,11 @@
 
 	&:hover {
 		color: #d5ac05;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 20px;
+		top: 5px;
 	}
 }
 
@@ -28,5 +41,15 @@
 
 	&:focus {
 		outline: 1px solid #777;
+	}
+
+	@media (max-width: 992px) {
+		visibility: visible !important;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 14px;
+		height: 30px;
+		padding-left: 30px;
 	}
 }

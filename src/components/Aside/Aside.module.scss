@@ -1,9 +1,17 @@
 .wrapper {
 	padding: 50px;
 	height: 100%;
+
+	@media (max-width: 1400px) {
+		padding: 35px;
+	}
 }
 
 .container {
 	position: sticky;
 	top: 50px;
+
+	@media (max-width: 1400px) {
+		top: 35px;
+	}
 }

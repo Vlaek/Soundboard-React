@@ -13,10 +13,34 @@
 .name {
 	font-size: 16px;
 	font-weight: 600;
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
+
+	@media (max-width: 490px) {
+		font-size: 10px;
+	}
 }
 
 .author {
 	font-size: 12px;
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	@media (max-width: 768px) {
+		font-size: 10px;
+	}
+
+	@media (max-width: 490px) {
+		font-size: 8px;
+	}
 }
 
 .img {
@@ -33,5 +57,19 @@
 		width: 100%;
 		outline: 1px solid black;
 		user-select: none;
+	}
+
+	@media (max-width: 992px) {
+		width: 35px;
+	}
+
+	@media (max-width: 768px) {
+		width: 30px;
+		margin-right: 15px;
+	}
+
+	@media (max-width: 576px) {
+		width: 25px;
+		margin-right: 10px;
 	}
 }

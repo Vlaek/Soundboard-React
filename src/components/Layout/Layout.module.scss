@@ -33,4 +33,21 @@
 		background-color: rgba(24, 24, 24, 255);
 		border-right: 1px solid rgba(36, 36, 36, 255);
 	}
+
+	@media (max-width: 1400px) {
+		grid-template-columns: 2fr 2fr 1fr;
+		grid-template-rows: 100px 1fr 1fr 160px;
+	}
+
+	@media (max-width: 992px) {
+		grid-template-areas:
+			'h h h'
+			'm m m'
+			'm m m'
+			'f f f';
+
+		aside {
+			display: none;
+		}
+	}
 }

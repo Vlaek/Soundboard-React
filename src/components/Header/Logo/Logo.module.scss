@@ -10,4 +10,13 @@
 	&:hover {
 		color: #d5ac05;
 	}
+
+	@media (max-width: 992px) {
+		grid-area: l;
+		text-align: left;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 24px;
+	}
 }

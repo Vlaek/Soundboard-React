@@ -4,4 +4,25 @@
 	align-items: center;
 	height: 100%;
 	padding: 0 20px;
+
+	@media (max-width: 992px) {
+		display: grid;
+		grid-template-areas:
+			'l i i'
+			's s s';
+		grid-template-rows: 1fr 1fr;
+		grid-template-columns: 250px 1fr 1fr;
+	}
+
+	@media (max-width: 576px) {
+		grid-template-columns: 170px 1fr 1fr;
+		grid-template-rows: 40px 40px;
+		row-gap: 5px;
+		padding: 0 10px;
+	}
+
+	@media (max-width: 450px) {
+		font-size: 8px;
+		padding: 0 5px;
+	}
 }

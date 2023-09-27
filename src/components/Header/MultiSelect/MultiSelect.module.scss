@@ -29,12 +29,28 @@
 		&:hover {
 			background-color: rgba(36, 36, 36, 255);
 		}
+
+		@media (max-width: 576px) {
+			font-size: 12px;
+		}
+
+		@media (max-width: 420px) {
+			font-size: 10px;
+		}
 	}
 
 	[class$='-multiValue'] {
 		color: #000;
 		background-color: #d5ac05;
 		font-weight: 600;
+
+		@media (max-width: 576px) {
+			font-size: 12px;
+		}
+
+		@media (max-width: 420px) {
+			font-size: 8px;
+		}
 	}
 
 	[class$='-MultiValueRemove'] {
@@ -66,5 +82,18 @@
 
 	[class$='-indicatorContainer'] {
 		cursor: pointer;
+	}
+
+	@media (max-width: 992px) {
+		grid-area: s;
+		width: 100%;
+	}
+}
+
+@media (max-width: 576px) {
+	.select {
+		[class$='-control'] {
+			height: 20px;
+		}
 	}
 }

@@ -8,6 +8,22 @@
 		width: 150px !important;
 		transform: rotate(-90deg);
 	}
+
+	@media (max-width: 992px) {
+		width: 25px;
+	}
+
+	@media (max-width: 768px) {
+		width: 20px;
+	}
+
+	@media (max-width: 576px) {
+		width: 15px;
+	}
+
+	@media (max-width: 490px) {
+		width: 12px;
+	}
 }
 
 .button {
@@ -30,13 +46,36 @@
 			}
 		}
 	}
+
+	@media (max-width: 992px) {
+		font-size: 25px;
+		width: 25px;
+	}
+
+	@media (max-width: 768px) {
+		font-size: 20px;
+		width: 20px;
+	}
+
+	@media (max-width: 576px) {
+		height: 60px;
+		font-size: 15px;
+		width: 15px;
+	}
+
+	@media (max-width: 490px) {
+		font-size: 12px;
+		width: 12px;
+	}
 }
 
 .volumeContainer {
 	width: 50px;
 	height: 230px;
 	visibility: hidden;
+	display: flex;
 	align-items: start;
+	justify-content: center;
 	position: absolute;
 	top: -230px;
 	left: 0;
@@ -47,6 +86,22 @@
 		.inputContainer {
 			opacity: 1;
 		}
+	}
+
+	@media (max-width: 992px) {
+		width: 25px;
+	}
+
+	@media (max-width: 768px) {
+		width: 20px;
+	}
+
+	@media (max-width: 576px) {
+		width: 15px;
+	}
+
+	@media (max-width: 490px) {
+		width: 12px;
 	}
 }
 

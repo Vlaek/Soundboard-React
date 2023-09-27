@@ -1,5 +1,13 @@
 .items {
 	padding: 15px 25px;
+
+	@media (max-width: 768px) {
+		padding: 10px 20px;
+	}
+
+	@media (max-width: 576px) {
+		padding: 5px 10px;
+	}
 }
 
 .buttons {
@@ -7,6 +15,14 @@
 	border-bottom: 1px solid rgba(36, 36, 36, 255);
 	line-height: 30px;
 	margin-bottom: 30px;
+
+	@media (max-width: 768px) {
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 576px) {
+		margin-bottom: 10px;
+	}
 }
 
 .button {
@@ -22,6 +38,14 @@
 	&.active {
 		border-bottom: 5px solid #d5ac05;
 	}
+
+	@media (max-width: 768px) {
+		font-size: 16px;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 14px;
+	}
 }
 
 .info {
@@ -30,6 +54,16 @@
 	color: #777;
 	margin-bottom: 10px;
 	padding: 0 10px 0 0;
+
+	@media (max-width: 576px) {
+		font-size: 12px;
+		margin-bottom: 5px;
+		padding: 0;
+	}
+
+	@media (max-width: 420px) {
+		font-size: 10px;
+	}
 }
 
 .id {
@@ -41,6 +75,13 @@
 	align-items: center;
 	justify-content: center;
 	margin-right: 10px;
+
+	@media (max-width: 576px) {
+		flex: 0 0 30px;
+		height: 25px;
+		width: 25px;
+		margin-right: 5px;
+	}
 }
 
 .name {
@@ -63,6 +104,9 @@
 
 .author {
 	flex: 0 1 50%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
 }
 
 .error {

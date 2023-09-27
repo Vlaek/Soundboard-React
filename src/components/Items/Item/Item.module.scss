@@ -22,6 +22,29 @@
 			display: none;
 		}
 	}
+
+	@media (max-width: 1400px) {
+		font-size: 14px;
+	}
+
+	@media (max-width: 768px) {
+		height: 35px;
+		font-size: 12px;
+	}
+
+	@media (max-width: 576px) {
+		height: 30px;
+		font-size: 10px;
+	}
+
+	@media (max-width: 450px) {
+		font-size: 9px;
+	}
+
+	@media (max-width: 420px) {
+		height: 25px;
+		font-size: 8px;
+	}
 }
 
 .idIsFocused {
@@ -38,6 +61,13 @@
 	align-items: center;
 	justify-content: center;
 	margin-right: 10px;
+
+	@media (max-width: 576px) {
+		flex: 0 0 30px;
+		height: 25px;
+		width: 25px;
+		margin-right: 5px;
+	}
 }
 
 .name {
@@ -93,10 +123,22 @@
 	&:hover {
 		color: #d5ac05;
 	}
+
+	@media (max-width: 768px) {
+		font-size: 20px;
+	}
+
+	@media (max-width: 576px) {
+		font-size: 16px;
+	}
 }
 
 .duration {
 	min-width: 50px;
+
+	@media (max-width: 576px) {
+		min-width: 25px;
+	}
 }
 
 .play {
@@ -106,6 +148,18 @@
 	color: #d5ac05;
 	user-select: none;
 	transition: color 0.3s ease;
+
+	@media (max-width: 768px) {
+		font-size: 25px;
+	}
+
+	@media (max-width: 450px) {
+		font-size: 23px;
+	}
+
+	@media (max-width: 420px) {
+		font-size: 20px;
+	}
 }
 
 .active {
