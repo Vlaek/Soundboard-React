@@ -10,20 +10,24 @@ import DataService from './API/DataService'
 import { useFilter } from './hooks/useFilter'
 import { useFetching } from './hooks/useFetching'
 import { ITrack, IUseFetching } from './types/types'
-import { setTrackIndex } from './store/actions/trackIndex'
+import { loadTracks, setTrackIndex } from './store/actions/player'
 import { RootState } from './store/store'
 
 const App: FC = () => {
 	const dispatch = useDispatch()
 
-	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+	const currentTrack = useSelector(
+		(state: RootState) => state.player.currentTrack,
+	)
 
 	const [items, setItems] = useState<ITrack[]>([])
 
-	const { fetchItems, isLoading, itemsError }: IUseFetching = useFetching(async () => {
-		const response = await DataService.getAll()
-		setItems(response.data)
-	})
+	const { fetchItems, isLoading, itemsError }: IUseFetching = useFetching(
+		async () => {
+			const response = await DataService.getAll()
+			setItems(response.data)
+		},
+	)
 
 	useEffect(() => {
 		fetchItems()
@@ -32,8 +36,11 @@ const App: FC = () => {
 	const sortedAndFilteredItems = useFilter(items)
 
 	useEffect(() => {
-		const index = sortedAndFilteredItems.findIndex(track => track.id === currentTrack?.id)
+		const index = sortedAndFilteredItems.findIndex(
+			track => track.id === currentTrack?.id,
+		)
 		dispatch(setTrackIndex(index))
+		dispatch(loadTracks(sortedAndFilteredItems))
 	}, [sortedAndFilteredItems, currentTrack?.id, dispatch])
 
 	return (
@@ -42,11 +49,9 @@ const App: FC = () => {
 				aside={<Aside />}
 				header={<Header />}
 				footer={<Footer />}
-				main={
-					<Items isLoading={isLoading} itemsError={itemsError} tracks={sortedAndFilteredItems} />
-				}
+				main={<Items isLoading={isLoading} itemsError={itemsError} />}
 			/>
-			<Player tracks={sortedAndFilteredItems} />
+			<Player />
 		</div>
 	)
 }

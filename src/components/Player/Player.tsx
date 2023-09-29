@@ -2,17 +2,14 @@ import { FC, useRef, useState } from 'react'
 import styles from './Player.module.scss'
 import Controls from './Controls/Controls'
 import ProgressBar from './ProgressBar/ProgressBar'
-import { ITrack } from '../../types/types'
 import { CSSTransition } from 'react-transition-group'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 
-interface PlayerProps {
-	tracks: ITrack[]
-}
-
-const Player: FC<PlayerProps> = ({ tracks }) => {
-	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+const Player: FC = () => {
+	const currentTrack = useSelector(
+		(state: RootState) => state.player.currentTrack,
+	)
 
 	const [timeProgress, setTimeProgress] = useState(0)
 	const [duration, setDuration] = useState(0)
@@ -34,16 +31,17 @@ const Player: FC<PlayerProps> = ({ tracks }) => {
 			}}
 		>
 			<div className={styles.player} ref={playerRef}>
-				<ProgressBar {...{ progressBarRef, audioRef, timeProgress, duration, progressRef }} />
+				<ProgressBar
+					{...{ progressBarRef, audioRef, timeProgress, duration, progressRef }}
+				/>
 				<Controls
 					{...{
 						audioRef,
 						progressBarRef,
 						duration,
-						setTimeProgress,
-						tracks,
-						progressRef,
 						setDuration,
+						setTimeProgress,
+						progressRef,
 					}}
 				/>
 			</div>

@@ -1,210 +1,108 @@
-import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setIsPlaying } from '../../../store/actions/isPlaying'
-import { IoRepeatOutline, IoShuffle, IoCloseSharp } from 'react-icons/io5'
+import {
+	IoRepeatOutline,
+	IoShuffle,
+	IoCloseSharp,
+	IoPlayBackSharp,
+	IoPlayForwardSharp,
+	IoPlaySkipBackSharp,
+	IoPlaySkipForwardSharp,
+	IoPlaySharp,
+	IoPauseSharp,
+} from 'react-icons/io5'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { ITrack } from '../../../types/types'
 import Display from '../Display/Display'
-import Buttons from '../Buttons/Buttons'
 import Volume from './../Volume/Volume'
-import cn from 'classnames'
-import styles from './Controls.module.scss'
 import { RootState } from '../../../store/store'
-import { setTrackIndex } from './../../../store/actions/trackIndex'
 import { setLike } from './../../../store/actions/likes'
-import { setCurrentTrack } from '../../../store/actions/currentTrack'
+import styles from './Controls.module.scss'
+import usePlayerControls from './../../../hooks/usePlayerControls'
+import {
+	togglePlayPause,
+	setRepeat,
+	setRandom,
+	setCurrentTrack,
+	nextTrack,
+	previousTrack,
+} from './../../../store/actions/player'
 
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>
 	progressBarRef: React.RefObject<HTMLInputElement>
 	duration: number
-	setTimeProgress: (duration: number) => void
-	tracks: ITrack[]
-	progressRef: React.RefObject<HTMLDivElement>
 	setDuration: React.Dispatch<React.SetStateAction<number>>
+	setTimeProgress: (duration: number) => void
+	progressRef: React.RefObject<HTMLDivElement>
 }
 
 const Controls: FC<ControlsProps> = ({
 	audioRef,
 	progressBarRef,
 	duration,
-	setTimeProgress,
-	tracks,
-	progressRef,
 	setDuration,
+	setTimeProgress,
+	progressRef,
 }) => {
 	const dispatch = useDispatch()
 
-	const trackIndex = useSelector((state: RootState) => state.trackIndex)
-	const isPlaying = useSelector((state: RootState) => state.isPlaying)
-	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+	const isPlaying = useSelector((state: RootState) => state.player.isPlaying)
+	const isRepeat = useSelector((state: RootState) => state.player.isRepeat)
+	const isRandom = useSelector((state: RootState) => state.player.isRandom)
+	const currentTrack = useSelector(
+		(state: RootState) => state.player.currentTrack,
+	)
 	const isLiked = useSelector((state: RootState) =>
 		state.likes.some(like => like.id === currentTrack?.id),
 	)
 
-	const [volume, setVolume] = useState(50)
-	const [muteVolume, setMuteVolume] = useState(false)
-
-	const [isRandom, setIsRandom] = useState(false)
-	const [isRepeat, setIsRepeat] = useState(false)
-
-	const playAnimationRef = useRef<number | null>(null)
-
-	const togglePlayPause = useCallback(() => {
-		dispatch(setIsPlaying(!isPlaying))
-	}, [dispatch, isPlaying])
-
-	const repeat = useCallback(() => {
-		const currentTime = audioRef.current?.currentTime
-		if (currentTime) {
-			setTimeProgress(currentTime)
-		}
-		if (progressBarRef.current && progressRef.current) {
-			progressBarRef.current.value = String(currentTime)
-			progressBarRef.current.style.setProperty(
-				'--range-progress',
-				`${(+progressBarRef.current.value / duration) * 100}%`,
-			)
-			progressRef.current.style.width = `${(+progressBarRef.current.value / duration) * 100}%`
-
-			playAnimationRef.current = requestAnimationFrame(repeat)
-		}
-	}, [audioRef, duration, progressBarRef, setTimeProgress, progressRef])
-
-	useEffect(() => {
-		if (audioRef) {
-			if (audioRef.current) {
-				audioRef.current.volume = volume / 100
-				audioRef.current.muted = muteVolume
-			}
-		}
-	}, [volume, audioRef, muteVolume, isPlaying])
-
-	useEffect(() => {
-		if (isPlaying) {
-			audioRef.current?.play()
-		} else {
-			audioRef.current?.pause()
-		}
-		playAnimationRef.current = requestAnimationFrame(repeat)
-	}, [isPlaying, audioRef, repeat])
-
-	const getRandomTrack = useCallback(() => {
-		let randomIndex
-
-		do {
-			randomIndex = Math.floor(Math.random() * tracks.length)
-		} while (randomIndex === trackIndex)
-
-		dispatch(setTrackIndex(randomIndex))
-		dispatch(setCurrentTrack(tracks[randomIndex]))
-	}, [dispatch, trackIndex, tracks])
-
-	const handleNext = useCallback(() => {
-		if (trackIndex >= tracks.length - 1) {
-			setTrackIndex(0)
-			dispatch(setCurrentTrack(tracks[0]))
-		} else {
-			if (isRandom) {
-				getRandomTrack()
-			} else {
-				dispatch(setTrackIndex(trackIndex + 1))
-				dispatch(setCurrentTrack(tracks[trackIndex + 1]))
-			}
-		}
-	}, [dispatch, getRandomTrack, isRandom, trackIndex, tracks])
-
-	const handleRepeat = () => {
-		if (audioRef.current) {
-			audioRef.current.currentTime = 0
-			audioRef.current.play()
-		}
-	}
-
-	const handlePrevious = () => {
-		if (trackIndex === 0) {
-			const lastTrackIndex = tracks.length - 1
-			setTrackIndex(lastTrackIndex)
-			dispatch(setCurrentTrack(tracks[lastTrackIndex]))
-		} else {
-			dispatch(setTrackIndex(trackIndex - 1))
-			dispatch(setCurrentTrack(tracks[trackIndex - 1]))
-		}
-		if (!isPlaying) {
-			setIsPlaying(true)
-		}
-	}
-
-	const skipForward = useCallback(() => {
-		if (audioRef.current) {
-			if (duration <= audioRef.current.currentTime + 5) {
-				handleNext()
-			} else {
-				audioRef.current.currentTime += 10
-			}
-		}
-	}, [audioRef, duration, handleNext])
-
-	const skipBackward = useCallback(() => {
-		if (audioRef.current) audioRef.current.currentTime -= 5
-	}, [audioRef])
-
-	useEffect(() => {
-		const handleKeyDown = (e: KeyboardEvent) => {
-			switch (e.key) {
-				case 'ArrowRight':
-					skipForward()
-					break
-				case 'ArrowLeft':
-					skipBackward()
-					break
-				case ' ': {
-					e.preventDefault()
-					togglePlayPause()
-					break
-				}
-				default:
-					return
-			}
-		}
-
-		document.addEventListener('keydown', handleKeyDown)
-
-		return () => {
-			document.removeEventListener('keydown', handleKeyDown)
-		}
-	}, [skipBackward, skipForward, togglePlayPause])
+	const { handleRepeat, skipForward, skipBackward } = usePlayerControls(
+		audioRef,
+		duration,
+		progressBarRef,
+		progressRef,
+		setTimeProgress,
+	)
 
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.controls}>
-				<Buttons
-					{...{
-						handleNext,
-						handlePrevious,
-						skipForward,
-						skipBackward,
-						togglePlayPause,
-						isPlaying,
-					}}
-				/>
+			<div>
+				<div className={styles.buttons}>
+					<button onClick={() => dispatch(previousTrack())}>
+						<IoPlaySkipBackSharp />
+					</button>
+					<button onClick={skipBackward} title='Перемотать назад'>
+						<IoPlayBackSharp />
+					</button>
+					<button
+						onClick={() => dispatch(togglePlayPause())}
+						title='Включить / выключить'
+					>
+						{isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+					</button>
+					<button onClick={skipForward} title='Перемотать вперед'>
+						<IoPlayForwardSharp />
+					</button>
+					<button
+						onClick={() => dispatch(nextTrack())}
+						title='Включить следующий трек'
+					>
+						<IoPlaySkipForwardSharp />
+					</button>
+				</div>
 				<Display
 					{...{
 						audioRef,
 						setDuration,
 						progressBarRef,
-						tracks,
-						trackIndex,
-						setTrackIndex,
-						handleNext,
 						isRepeat,
 						handleRepeat,
 					}}
 				/>
 			</div>
-			<div className={styles.right}>
+			<div className={styles.buttons}>
 				<button
-					className={cn(styles.button, { [styles.active]: isLiked })}
+					className={isLiked ? styles.active : ''}
 					onClick={() => {
 						currentTrack && dispatch(setLike(currentTrack))
 					}}
@@ -212,33 +110,23 @@ const Controls: FC<ControlsProps> = ({
 					{isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 				<button
-					className={cn(styles.button, { [styles.active]: isRepeat })}
-					onClick={() => setIsRepeat(!isRepeat)}
+					className={isRepeat ? styles.active : ''}
+					onClick={() => dispatch(setRepeat(!isRepeat))}
 					title='Повторять'
 				>
 					<IoRepeatOutline />
 				</button>
-
 				<button
-					className={cn(styles.button, { [styles.active]: isRandom })}
-					onClick={() => setIsRandom(!isRandom)}
+					className={isRandom ? styles.active : ''}
+					onClick={() => dispatch(setRandom(!isRandom))}
 					title='В случайном порядке'
 				>
 					<IoShuffle />
 				</button>
-
-				<Volume
-					{...{
-						volume,
-						setVolume,
-						muteVolume,
-						setMuteVolume,
-					}}
-				/>
+				<Volume audioRef={audioRef} />
 				<button
-					className={styles.button}
 					onClick={() => {
-						togglePlayPause()
+						dispatch(togglePlayPause())
 						dispatch(setCurrentTrack(null))
 					}}
 					title='Закрыть плеер'

@@ -1,5 +1,6 @@
 import { FC, memo } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { nextTrack } from '../../../store/actions/player'
 import { RootState } from '../../../store/store'
 import styles from './Display.module.scss'
 
@@ -7,14 +8,17 @@ interface DisplayProps {
 	audioRef: React.RefObject<HTMLAudioElement>
 	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
-	handleNext: () => void
 	isRepeat: boolean
 	handleRepeat: () => void
 }
 
 const Display: FC<DisplayProps> = memo(
-	({ audioRef, setDuration, progressBarRef, handleNext, isRepeat, handleRepeat }) => {
-		const currentTrack = useSelector((state: RootState) => state.currentTrack)
+	({ audioRef, setDuration, progressBarRef, isRepeat, handleRepeat }) => {
+		const dispatch = useDispatch()
+
+		const currentTrack = useSelector(
+			(state: RootState) => state.player.currentTrack,
+		)
 
 		const onLoadedMetadata = () => {
 			const seconds = audioRef.current?.duration
@@ -31,18 +35,26 @@ const Display: FC<DisplayProps> = memo(
 				{currentTrack && (
 					<>
 						<div className={styles.img}>
-							<img src={`./img/${currentTrack.author}.png`} alt='' draggable={false} />
+							<img
+								src={`./img/${currentTrack.author}.png`}
+								alt=''
+								draggable={false}
+							/>
 						</div>
 						<div className={styles.text}>
 							<p className={styles.name}>{currentTrack && currentTrack.name}</p>
-							<p className={styles.author}>{currentTrack && currentTrack.author}</p>
+							<p className={styles.author}>
+								{currentTrack && currentTrack.author}
+							</p>
 						</div>
 
 						<audio
 							src={`./tracks/${currentTrack.file}`}
 							ref={audioRef}
 							onLoadedMetadata={onLoadedMetadata}
-							onEnded={() => (isRepeat ? handleRepeat() : handleNext())}
+							onEnded={() =>
+								isRepeat ? handleRepeat() : dispatch(nextTrack())
+							}
 						/>
 					</>
 				)}

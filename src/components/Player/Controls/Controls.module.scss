@@ -1,21 +1,24 @@
 .wrapper {
 	display: flex;
 	justify-content: space-between;
+
 	height: 100%;
+	padding: 0px 20px;
+
+	div {
+		display: flex;
+	}
 }
 
-.controls {
+.buttons {
 	height: 100%;
-	display: flex;
-	justify-content: space-between;
+
+	&:first-child {
+		margin-right: 50px;
+	}
 }
 
-.right {
-	display: flex;
-	padding-right: 20px;
-}
-
-.button {
+button {
 	width: 50px;
 	height: 100%;
 	font-size: 30px;

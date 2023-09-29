@@ -1,15 +1,24 @@
-import { FC, memo } from 'react'
+import { FC, memo, useEffect, useState } from 'react'
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from 'react-icons/io'
 import styles from './Volume.module.scss'
 
 interface VolumeProps {
-	volume: number
-	setVolume: React.Dispatch<React.SetStateAction<number>>
-	muteVolume: boolean
-	setMuteVolume: React.Dispatch<React.SetStateAction<boolean>>
+	audioRef: React.RefObject<HTMLAudioElement>
 }
 
-const Volume: FC<VolumeProps> = memo(({ volume, setVolume, muteVolume, setMuteVolume }) => {
+const Volume: FC<VolumeProps> = memo(({ audioRef }) => {
+	const [volume, setVolume] = useState(50)
+	const [muteVolume, setMuteVolume] = useState(false)
+
+	useEffect(() => {
+		if (audioRef) {
+			if (audioRef.current) {
+				audioRef.current.volume = volume / 100
+				audioRef.current.muted = muteVolume
+			}
+		}
+	}, [volume, audioRef, muteVolume])
+
 	return (
 		<div className={styles.volume}>
 			<button

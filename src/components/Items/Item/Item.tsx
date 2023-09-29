@@ -1,15 +1,24 @@
 import { FC } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { AiOutlineHeart, AiFillHeart, AiFillPlayCircle, AiFillPauseCircle } from 'react-icons/ai'
+import {
+	AiOutlineHeart,
+	AiFillHeart,
+	AiFillPlayCircle,
+	AiFillPauseCircle,
+} from 'react-icons/ai'
 import { MdExplicit } from 'react-icons/md'
 import styles from './Item.module.scss'
 import cn from 'classnames'
 import { ITrack } from '../../../types/types'
 import { RootState } from '../../../store/store'
-import { setIsPlaying } from '../../../store/actions/isPlaying'
-import { setTrackIndex } from './../../../store/actions/trackIndex'
+// import { setTrackIndex } from './../../../store/actions/trackIndex'
 import { setLike } from './../../../store/actions/likes'
-import { setCurrentTrack } from './../../../store/actions/currentTrack'
+// import { setCurrentTrack } from './../../../store/actions/currentTrack'
+import {
+	setPlaying,
+	setCurrentTrack,
+	setTrackIndex,
+} from './../../../store/actions/player'
 
 interface ItemProps {
 	item: ITrack
@@ -19,17 +28,21 @@ interface ItemProps {
 const Item: FC<ItemProps> = ({ item, index }) => {
 	const dispatch = useDispatch()
 
-	const isPlaying = useSelector((state: RootState) => state.isPlaying)
-	const isLiked = useSelector((state: RootState) => state.likes.some(like => like.id === item.id))
-	const currentTrack = useSelector((state: RootState) => state.currentTrack)
+	const isPlaying = useSelector((state: RootState) => state.player.isPlaying)
+	const isLiked = useSelector((state: RootState) =>
+		state.likes.some(like => like.id === item.id),
+	)
+	const currentTrack = useSelector(
+		(state: RootState) => state.player.currentTrack,
+	)
 
 	const handleClick = (item: ITrack) => {
 		if (currentTrack !== item) {
 			dispatch(setCurrentTrack(item))
 			dispatch(setTrackIndex(item.id))
-			dispatch(setIsPlaying(true))
+			dispatch(setPlaying(true))
 		} else {
-			dispatch(setIsPlaying(!isPlaying))
+			dispatch(setPlaying(!isPlaying))
 		}
 	}
 
