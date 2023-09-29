@@ -1,9 +1,12 @@
-import { ITrack } from '../../types/types'
-import { LikesState } from '../store'
+import { ITrack } from 'types/types'
+import { LikesState } from '../types'
 
 const initialState: ITrack[] = []
 
-export const likesReducer = (state = initialState, action: LikesState): ITrack[] | boolean => {
+export const likesReducer = (
+	state = initialState,
+	action: LikesState,
+): ITrack[] | boolean => {
 	switch (action.type) {
 		case 'SET_LIKE': {
 			let isInArray = false

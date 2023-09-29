@@ -1,5 +1,5 @@
-import { FiltersState } from '../store'
-import { IFilters } from './../../types/types'
+import { FiltersState } from '../types'
+import { IFilters } from 'types/types'
 
 const initialState: IFilters = {
 	authorFilter: [],

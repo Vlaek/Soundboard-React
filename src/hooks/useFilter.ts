@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { RootState } from '../store/store'
-import { ITrack } from '../types/types'
+import { RootState } from 'store/types'
+import { ITrack } from 'types/types'
 import useDebounce from './useDebounce'
 
 export const useFilter = (tracks: ITrack[]) => {
@@ -24,7 +24,9 @@ export const useFilter = (tracks: ITrack[]) => {
 		}
 
 		if (filters.authorFilter.length > 0) {
-			filteredTracks = filteredTracks.filter(track => filters.authorFilter.includes(track.author))
+			filteredTracks = filteredTracks.filter(track =>
+				filters.authorFilter.includes(track.author),
+			)
 		}
 
 		if (filters.explicitFilter) {
@@ -32,7 +34,9 @@ export const useFilter = (tracks: ITrack[]) => {
 		}
 
 		if (filters.likesFilter) {
-			filteredTracks = filteredTracks.filter(track => likes.some(like => like.id === track.id))
+			filteredTracks = filteredTracks.filter(track =>
+				likes.some(like => like.id === track.id),
+			)
 		}
 
 		switch (filters.sort) {

@@ -1,4 +1,4 @@
-import { ITrack } from '../../types/types'
+import { ITrack } from 'types/types'
 
 export const loadTracks = (tracks: ITrack[]) => {
 	return {
@@ -48,17 +48,3 @@ export const setTrackIndex = (index: number) => ({
 	type: 'SET_TRACK_INDEX',
 	payload: index,
 })
-
-// const handlePrevious = () => {
-//     if (trackIndex === 0) {
-//         const lastTrackIndex = tracks.length - 1
-//         setTrackIndex(lastTrackIndex)
-//         dispatch(setCurrentTrack(tracks[lastTrackIndex]))
-//     } else {
-//         dispatch(setTrackIndex(trackIndex - 1))
-//         dispatch(setCurrentTrack(tracks[trackIndex - 1]))
-//     }
-//     if (!isPlaying) {
-//         dispatch(setPlaying(true))
-//     }
-// }

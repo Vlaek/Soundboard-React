@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import Banner from './Banner/Banner'
 import { data } from './data'
-import { IBanner } from '../../types/types'
+import { IBanner } from 'types/types'
 import styles from './Aside.module.scss'
 
 const Aside: FC = memo(() => {

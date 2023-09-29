@@ -1,4 +1,4 @@
-import { PlayerActionTypes, PlayerState } from '../store'
+import { PlayerActionTypes, PlayerState } from '../types'
 
 const initialState: PlayerState = {
 	tracks: [],
@@ -104,17 +104,3 @@ export const playerReducer = (
 			return state
 	}
 }
-
-// const handlePrevious = () => {
-//     if (trackIndex === 0) {
-//         const lastTrackIndex = tracks.length - 1
-//         setTrackIndex(lastTrackIndex)
-//         dispatch(setCurrentTrack(tracks[lastTrackIndex]))
-//     } else {
-//         dispatch(setTrackIndex(trackIndex - 1))
-//         dispatch(setCurrentTrack(tracks[trackIndex - 1]))
-//     }
-//     if (!isPlaying) {
-//         dispatch(setPlaying(true))
-//     }
-// }

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IBanner } from '../../../types/types'
+import { IBanner } from 'types/types'
 import styles from './Banner.module.scss'
 
 type BannerProps = {

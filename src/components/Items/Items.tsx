@@ -6,8 +6,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import Item from './Item/Item'
 import cn from 'classnames'
 import styles from './Items.module.scss'
-import { RootState } from '../../store/store'
-import { setFilters } from './../../store/actions/filters'
+import { RootState } from 'store/types'
+import { setFilters } from 'store/actions/filters'
 
 interface ItemsProps {
 	isLoading: boolean

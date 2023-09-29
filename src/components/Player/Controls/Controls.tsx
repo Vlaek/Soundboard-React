@@ -14,7 +14,7 @@ import {
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import Display from '../Display/Display'
 import Volume from './../Volume/Volume'
-import { RootState } from 'store/store'
+import { RootState } from 'store/types'
 import { setLike } from 'store/actions/likes'
 import styles from './Controls.module.scss'
 import usePlayerControls from 'hooks/usePlayerControls'

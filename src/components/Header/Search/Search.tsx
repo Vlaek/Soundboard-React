@@ -2,8 +2,8 @@ import { FC, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { AiOutlineSearch } from 'react-icons/ai'
 import styles from './Search.module.scss'
-import { RootState } from '../../../store/store'
-import { setFilters } from './../../../store/actions/filters'
+import { RootState } from 'store/types'
+import { setFilters } from 'store/actions/filters'
 
 const Search: FC = () => {
 	const dispatch = useDispatch()
@@ -12,7 +12,9 @@ const Search: FC = () => {
 	const [isActive, setIsActive] = useState<boolean>(false)
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	const handleButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+	const handleButtonClick = (
+		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) => {
 		event.stopPropagation()
 		setIsActive(true)
 		setTimeout(() => {

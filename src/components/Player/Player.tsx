@@ -4,7 +4,7 @@ import Controls from './Controls/Controls'
 import ProgressBar from './ProgressBar/ProgressBar'
 import { CSSTransition } from 'react-transition-group'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../store/store'
+import { RootState } from 'store/types'
 
 const Player: FC = () => {
 	const currentTrack = useSelector(

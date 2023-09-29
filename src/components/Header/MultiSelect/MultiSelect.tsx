@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from './MultiSelect.module.scss'
 import Select, { MultiValue, StylesConfig, GroupBase } from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { RootState } from '../../../store/store'
-import { setFilters } from '../../../store/actions/filters'
+import { RootState } from 'store/types'
+import { setFilters } from 'store/actions/filters'
 
 interface IOption {
 	value: string

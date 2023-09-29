@@ -9,16 +9,14 @@ import {
 import { MdExplicit } from 'react-icons/md'
 import styles from './Item.module.scss'
 import cn from 'classnames'
-import { ITrack } from '../../../types/types'
-import { RootState } from '../../../store/store'
-// import { setTrackIndex } from './../../../store/actions/trackIndex'
-import { setLike } from './../../../store/actions/likes'
-// import { setCurrentTrack } from './../../../store/actions/currentTrack'
+import { ITrack } from 'types/types'
+import { RootState } from 'store/types'
+import { setLike } from 'store/actions/likes'
 import {
 	setPlaying,
 	setCurrentTrack,
 	setTrackIndex,
-} from './../../../store/actions/player'
+} from 'store/actions/player'
 
 interface ItemProps {
 	item: ITrack

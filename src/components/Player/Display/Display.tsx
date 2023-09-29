@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextTrack } from '../../../store/actions/player'
-import { RootState } from '../../../store/store'
+import { nextTrack } from 'store/actions/player'
+import { RootState } from 'store/types'
 import styles from './Display.module.scss'
 
 interface DisplayProps {

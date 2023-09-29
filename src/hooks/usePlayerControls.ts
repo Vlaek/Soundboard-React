@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextTrack, togglePlayPause } from '../store/actions/player'
-import { RootState } from '../store/store'
+import { nextTrack, togglePlayPause } from 'store/actions/player'
+import { RootState } from 'store/types'
 
 function usePlayerControls(
 	audioRef: React.RefObject<HTMLAudioElement>,

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IUseFetching } from '../types/types'
+import { IUseFetching } from 'types/types'
 
 export const useFetching = (callback: () => Promise<void>): IUseFetching => {
 	const [isLoading, setIsLoading] = useState(false)
