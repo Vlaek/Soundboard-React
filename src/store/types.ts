@@ -10,6 +10,16 @@ export type FiltersState = {
 	payload: IFilters
 }
 
+export type DurationState = {
+	type: 'SET_DURATION'
+	payload: number
+}
+
+export type TimeProgressState = {
+	type: 'SET_TIME_PROGRESS'
+	payload: number
+}
+
 interface LoadTracksAction {
 	type: 'LOAD_TRACKS'
 	payload: ITrack[]
@@ -56,6 +66,8 @@ export type TrackIndexState = {
 }
 
 export type PlayerActionTypes =
+	| DurationState
+	| TimeProgressState
 	| LoadTracksAction
 	| TogglePlayPauseAction
 	| SetPlayingAction
@@ -68,6 +80,8 @@ export type PlayerActionTypes =
 
 export interface PlayerState {
 	tracks: ITrack[]
+	duration: number
+	timeProgress: number
 	isPlaying: boolean
 	isRepeat: boolean
 	isRandom: boolean

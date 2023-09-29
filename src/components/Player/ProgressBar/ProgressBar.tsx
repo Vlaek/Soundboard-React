@@ -1,21 +1,24 @@
 import { FC } from 'react'
 import styles from './ProgressBar.module.scss'
+import { RootState } from 'store/types'
+import { useSelector } from 'react-redux'
 
 interface ProgressBarProps {
-	progressBarRef: React.RefObject<HTMLInputElement>
 	audioRef: React.RefObject<HTMLAudioElement | null>
-	timeProgress: number
-	duration: number
+	progressBarRef: React.RefObject<HTMLInputElement>
 	progressRef: React.RefObject<HTMLDivElement>
 }
 
 const ProgressBar: FC<ProgressBarProps> = ({
-	progressBarRef,
 	audioRef,
-	timeProgress,
-	duration,
+	progressBarRef,
 	progressRef,
 }) => {
+	const duration = useSelector((state: RootState) => state.player.duration)
+	const timeProgress = useSelector(
+		(state: RootState) => state.player.timeProgress,
+	)
+
 	const handleProgressChange = () => {
 		if (audioRef.current && progressBarRef.current) {
 			audioRef.current.currentTime = +progressBarRef.current.value
@@ -42,7 +45,12 @@ const ProgressBar: FC<ProgressBarProps> = ({
 			<span className={styles.currentTime}>{formatTime(timeProgress)}</span>
 			<span className={styles.time}>{formatTime(duration + 1)}</span>
 			<div className={styles.input}>
-				<input type='range' ref={progressBarRef} defaultValue='0' onChange={handleProgressChange} />
+				<input
+					type='range'
+					ref={progressBarRef}
+					defaultValue='0'
+					onChange={handleProgressChange}
+				/>
 			</div>
 		</div>
 	)

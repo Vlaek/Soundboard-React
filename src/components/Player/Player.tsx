@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react'
+import { FC, useRef } from 'react'
 import styles from './Player.module.scss'
 import Controls from './Controls/Controls'
 import ProgressBar from './ProgressBar/ProgressBar'
@@ -11,10 +11,8 @@ const Player: FC = () => {
 		(state: RootState) => state.player.currentTrack,
 	)
 
-	const [timeProgress, setTimeProgress] = useState(0)
-	const [duration, setDuration] = useState(0)
-
 	const playerRef = useRef(null)
+
 	const audioRef = useRef<HTMLAudioElement>(null)
 	const progressBarRef = useRef<HTMLInputElement>(null)
 	const progressRef = useRef<HTMLDivElement>(null)
@@ -31,19 +29,8 @@ const Player: FC = () => {
 			}}
 		>
 			<div className={styles.player} ref={playerRef}>
-				<ProgressBar
-					{...{ progressBarRef, audioRef, timeProgress, duration, progressRef }}
-				/>
-				<Controls
-					{...{
-						audioRef,
-						progressBarRef,
-						duration,
-						setDuration,
-						setTimeProgress,
-						progressRef,
-					}}
-				/>
+				<ProgressBar {...{ audioRef, progressBarRef, progressRef }} />
+				<Controls {...{ audioRef, progressBarRef, progressRef }} />
 			</div>
 		</CSSTransition>
 	)

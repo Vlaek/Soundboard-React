@@ -1,11 +1,19 @@
 import { ITrack } from 'types/types'
 
-export const loadTracks = (tracks: ITrack[]) => {
-	return {
-		type: 'LOAD_TRACKS',
-		payload: tracks,
-	}
-}
+export const setDuration = (duration: number) => ({
+	type: 'SET_DURATION',
+	payload: duration,
+})
+
+export const setTimeProgress = (timeProgress: number) => ({
+	type: 'SET_TIME_PROGRESS',
+	payload: timeProgress,
+})
+
+export const loadTracks = (tracks: ITrack[]) => ({
+	type: 'LOAD_TRACKS',
+	payload: tracks,
+})
 
 export const togglePlayPause = () => ({
 	type: 'TOGGLE_PLAY_PAUSE',
@@ -31,14 +39,12 @@ export const setCurrentTrack = (track: ITrack | null) => ({
 	payload: track,
 })
 
-export const nextTrack = (isRandom: boolean = false) => {
-	return {
-		type: 'NEXT_TRACK',
-		payload: {
-			isRandom,
-		},
-	}
-}
+export const nextTrack = (isRandom: boolean = false) => ({
+	type: 'NEXT_TRACK',
+	payload: {
+		isRandom,
+	},
+})
 
 export const previousTrack = () => ({
 	type: 'PREVIOUS_TRACK',

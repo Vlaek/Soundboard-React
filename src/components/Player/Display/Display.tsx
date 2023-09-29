@@ -1,19 +1,18 @@
 import { FC, memo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextTrack } from 'store/actions/player'
+import { nextTrack, setDuration } from 'store/actions/player'
 import { RootState } from 'store/types'
 import styles from './Display.module.scss'
 
 interface DisplayProps {
 	audioRef: React.RefObject<HTMLAudioElement>
-	setDuration: (duration: number) => void
 	progressBarRef: React.RefObject<HTMLInputElement>
 	isRepeat: boolean
 	handleRepeat: () => void
 }
 
 const Display: FC<DisplayProps> = memo(
-	({ audioRef, setDuration, progressBarRef, isRepeat, handleRepeat }) => {
+	({ audioRef, progressBarRef, isRepeat, handleRepeat }) => {
 		const dispatch = useDispatch()
 
 		const currentTrack = useSelector(
@@ -23,7 +22,7 @@ const Display: FC<DisplayProps> = memo(
 		const onLoadedMetadata = () => {
 			const seconds = audioRef.current?.duration
 			if (seconds) {
-				setDuration(seconds - 1)
+				dispatch(setDuration(seconds - 1))
 			}
 			if (progressBarRef.current) {
 				progressBarRef.current.max = String(seconds)

@@ -30,18 +30,12 @@ import {
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>
 	progressBarRef: React.RefObject<HTMLInputElement>
-	duration: number
-	setDuration: React.Dispatch<React.SetStateAction<number>>
-	setTimeProgress: (duration: number) => void
 	progressRef: React.RefObject<HTMLDivElement>
 }
 
 const Controls: FC<ControlsProps> = ({
 	audioRef,
 	progressBarRef,
-	duration,
-	setDuration,
-	setTimeProgress,
 	progressRef,
 }) => {
 	const dispatch = useDispatch()
@@ -58,10 +52,8 @@ const Controls: FC<ControlsProps> = ({
 
 	const { handleRepeat, skipForward, skipBackward } = usePlayerControls(
 		audioRef,
-		duration,
 		progressBarRef,
 		progressRef,
-		setTimeProgress,
 	)
 
 	return (
@@ -93,7 +85,6 @@ const Controls: FC<ControlsProps> = ({
 				<Display
 					{...{
 						audioRef,
-						setDuration,
 						progressBarRef,
 						isRepeat,
 						handleRepeat,

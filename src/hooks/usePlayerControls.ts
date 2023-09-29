@@ -1,17 +1,20 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { nextTrack, togglePlayPause } from 'store/actions/player'
+import {
+	nextTrack,
+	setTimeProgress,
+	togglePlayPause,
+} from 'store/actions/player'
 import { RootState } from 'store/types'
 
 function usePlayerControls(
 	audioRef: React.RefObject<HTMLAudioElement>,
-	duration: number,
 	progressBarRef: React.RefObject<HTMLInputElement>,
 	progressRef: React.RefObject<HTMLDivElement>,
-	setTimeProgress: (time: number) => void,
 ) {
 	const dispatch = useDispatch()
 
+	const duration = useSelector((state: RootState) => state.player.duration)
 	const isPlaying = useSelector((state: RootState) => state.player.isPlaying)
 	const isRandom = useSelector((state: RootState) => state.player.isRandom)
 
@@ -20,7 +23,7 @@ function usePlayerControls(
 	const repeat = useCallback(() => {
 		const currentTime = audioRef.current?.currentTime
 		if (currentTime) {
-			setTimeProgress(currentTime)
+			dispatch(setTimeProgress(currentTime))
 		}
 		if (progressBarRef.current && progressRef.current) {
 			progressBarRef.current.value = String(currentTime)
@@ -34,14 +37,7 @@ function usePlayerControls(
 
 			playAnimationRef.current = requestAnimationFrame(repeat)
 		}
-	}, [
-		audioRef,
-		progressBarRef,
-		progressRef,
-		setTimeProgress,
-		duration,
-		playAnimationRef,
-	])
+	}, [audioRef, progressBarRef, progressRef, dispatch, duration])
 
 	useEffect(() => {
 		if (isPlaying) {

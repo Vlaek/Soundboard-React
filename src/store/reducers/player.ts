@@ -2,6 +2,8 @@ import { PlayerActionTypes, PlayerState } from '../types'
 
 const initialState: PlayerState = {
 	tracks: [],
+	duration: 0,
+	timeProgress: 0,
 	isPlaying: false,
 	isRepeat: false,
 	isRandom: false,
@@ -14,6 +16,16 @@ export const playerReducer = (
 	action: PlayerActionTypes,
 ) => {
 	switch (action.type) {
+		case 'SET_DURATION':
+			return {
+				...state,
+				duration: action.payload,
+			}
+		case 'SET_TIME_PROGRESS':
+			return {
+				...state,
+				timeProgress: action.payload,
+			}
 		case 'LOAD_TRACKS':
 			return {
 				...state,
