@@ -14,10 +14,10 @@ import {
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import Display from '../Display/Display'
 import Volume from './../Volume/Volume'
-import { RootState } from '../../../store/store'
-import { setLike } from './../../../store/actions/likes'
+import { RootState } from 'store/store'
+import { setLike } from 'store/actions/likes'
 import styles from './Controls.module.scss'
-import usePlayerControls from './../../../hooks/usePlayerControls'
+import usePlayerControls from 'hooks/usePlayerControls'
 import {
 	togglePlayPause,
 	setRepeat,
@@ -25,7 +25,7 @@ import {
 	setCurrentTrack,
 	nextTrack,
 	previousTrack,
-} from './../../../store/actions/player'
+} from 'store/actions/player'
 
 interface ControlsProps {
 	audioRef: React.RefObject<HTMLAudioElement>

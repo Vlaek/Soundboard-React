@@ -8,4 +8,13 @@ export default defineConfig({
 	build: {
 		outDir: 'dist',
 	},
+	resolve: {
+		alias: {
+			API: '/src/API',
+			components: '/src/components',
+			hooks: '/src/hooks',
+			store: '/src/store',
+			types: '/src/styles',
+		},
+	},
 })
