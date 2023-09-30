@@ -50,7 +50,7 @@ const Controls: FC<ControlsProps> = ({
 		state.likes.some(like => like.id === currentTrack?.id),
 	)
 
-	const { handleRepeat, skipForward, skipBackward } = usePlayerControls(
+	const { skipForward, skipBackward } = usePlayerControls(
 		audioRef,
 		progressBarRef,
 		progressRef,
@@ -60,65 +60,91 @@ const Controls: FC<ControlsProps> = ({
 		<div className={styles.wrapper}>
 			<div>
 				<div className={styles.buttons}>
-					<button onClick={() => dispatch(previousTrack())}>
+					<button
+						onClick={e => {
+							dispatch(previousTrack())
+							e.stopPropagation()
+						}}
+						title='Включить предыдущий трек'
+					>
 						<IoPlaySkipBackSharp />
 					</button>
-					<button onClick={skipBackward} title='Перемотать назад'>
+					<button
+						onClick={e => {
+							skipBackward()
+							e.stopPropagation()
+						}}
+						title='Перемотать назад'
+					>
 						<IoPlayBackSharp />
 					</button>
 					<button
-						onClick={() => dispatch(togglePlayPause())}
+						onClick={e => {
+							dispatch(togglePlayPause())
+							e.stopPropagation()
+						}}
 						title='Включить / выключить'
 					>
 						{isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
 					</button>
-					<button onClick={skipForward} title='Перемотать вперед'>
+					<button
+						onClick={e => {
+							skipForward()
+							e.stopPropagation()
+						}}
+						title='Перемотать вперед'
+					>
 						<IoPlayForwardSharp />
 					</button>
 					<button
-						onClick={() => dispatch(nextTrack())}
+						onClick={e => {
+							dispatch(nextTrack())
+							e.stopPropagation()
+						}}
 						title='Включить следующий трек'
 					>
 						<IoPlaySkipForwardSharp />
 					</button>
 				</div>
-				<Display
-					{...{
-						audioRef,
-						progressBarRef,
-						isRepeat,
-						handleRepeat,
-					}}
-				/>
+				<Display />
 			</div>
 			<div className={styles.buttons}>
 				<button
 					className={isLiked ? styles.active : ''}
-					onClick={() => {
+					onClick={e => {
 						currentTrack && dispatch(setLike(currentTrack))
+						e.stopPropagation()
 					}}
+					title={isLiked ? 'Убрать лайк' : 'Поставить лайк'}
 				>
 					{isLiked ? <AiFillHeart /> : <AiOutlineHeart />}
 				</button>
 				<button
 					className={isRepeat ? styles.active : ''}
-					onClick={() => dispatch(setRepeat(!isRepeat))}
+					onClick={e => {
+						dispatch(setRepeat(!isRepeat))
+						e.stopPropagation()
+					}}
 					title='Повторять'
 				>
 					<IoRepeatOutline />
 				</button>
 				<button
 					className={isRandom ? styles.active : ''}
-					onClick={() => dispatch(setRandom(!isRandom))}
+					onClick={e => {
+						dispatch(setRandom(!isRandom))
+						e.stopPropagation()
+					}}
 					title='В случайном порядке'
 				>
 					<IoShuffle />
 				</button>
-				<Volume audioRef={audioRef} />
+				<Volume />
 				<button
-					onClick={() => {
+					onClick={e => {
 						dispatch(togglePlayPause())
 						dispatch(setCurrentTrack(null))
+						e.stopPropagation()
 					}}
 					title='Закрыть плеер'
 				>

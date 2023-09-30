@@ -6,6 +6,7 @@ import {
 	togglePlayPause,
 } from 'store/actions/player'
 import { RootState } from 'store/types'
+import { previousTrack } from './../store/actions/player'
 
 function usePlayerControls(
 	audioRef: React.RefObject<HTMLAudioElement>,
@@ -15,6 +16,8 @@ function usePlayerControls(
 	const dispatch = useDispatch()
 
 	const duration = useSelector((state: RootState) => state.player.duration)
+	const volume = useSelector((state: RootState) => state.player.volume)
+	const isMute = useSelector((state: RootState) => state.player.isMute)
 	const isPlaying = useSelector((state: RootState) => state.player.isPlaying)
 	const isRandom = useSelector((state: RootState) => state.player.isRandom)
 
@@ -25,12 +28,12 @@ function usePlayerControls(
 		if (currentTime) {
 			dispatch(setTimeProgress(currentTime))
 		}
-		if (progressBarRef.current && progressRef.current) {
+		if (progressBarRef?.current && progressRef?.current) {
 			progressBarRef.current.value = String(currentTime)
-			progressBarRef.current.style.setProperty(
-				'--range-progress',
-				`${(+progressBarRef.current.value / duration) * 100}%`,
-			)
+			// progressBarRef.current.style.setProperty(
+			// 	'--range-progress',
+			// 	`${(+progressBarRef.current.value / duration) * 0}%`,
+			// )
 			progressRef.current.style.width = `${
 				(+progressBarRef.current.value / duration) * 100
 			}%`
@@ -47,13 +50,6 @@ function usePlayerControls(
 		}
 		playAnimationRef.current = requestAnimationFrame(repeat)
 	}, [isPlaying, audioRef, repeat, playAnimationRef])
-
-	const handleRepeat = () => {
-		if (audioRef.current) {
-			audioRef.current.currentTime = 0
-			audioRef.current.play()
-		}
-	}
 
 	const skipForward = useCallback(() => {
 		if (audioRef.current) {
@@ -82,6 +78,15 @@ function usePlayerControls(
 					e.preventDefault()
 					dispatch(togglePlayPause())
 					break
+				case 'MediaPlayPause':
+					dispatch(togglePlayPause())
+					break
+				case 'MediaTrackNext':
+					dispatch(nextTrack())
+					break
+				case 'MediaTrackPrevious':
+					dispatch(previousTrack())
+					break
 				default:
 					return
 			}
@@ -94,8 +99,16 @@ function usePlayerControls(
 		}
 	}, [dispatch, skipBackward, skipForward])
 
+	useEffect(() => {
+		if (audioRef) {
+			if (audioRef.current) {
+				audioRef.current.volume = volume / 100
+				audioRef.current.muted = isMute
+			}
+		}
+	}, [volume, audioRef, isMute, isPlaying])
+
 	return {
-		handleRepeat,
 		skipForward,
 		skipBackward,
 	}

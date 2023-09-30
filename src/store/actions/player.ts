@@ -1,5 +1,10 @@
 import { ITrack } from 'types/types'
 
+export const loadTracks = (tracks: ITrack[]) => ({
+	type: 'LOAD_TRACKS',
+	payload: tracks,
+})
+
 export const setDuration = (duration: number) => ({
 	type: 'SET_DURATION',
 	payload: duration,
@@ -10,9 +15,14 @@ export const setTimeProgress = (timeProgress: number) => ({
 	payload: timeProgress,
 })
 
-export const loadTracks = (tracks: ITrack[]) => ({
-	type: 'LOAD_TRACKS',
-	payload: tracks,
+export const setVolume = (volume: number) => ({
+	type: 'SET_VOLUME',
+	payload: volume,
+})
+
+export const setMute = (isMute: boolean) => ({
+	type: 'SET_MUTE',
+	payload: isMute,
 })
 
 export const togglePlayPause = () => ({

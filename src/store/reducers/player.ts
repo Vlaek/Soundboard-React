@@ -4,6 +4,8 @@ const initialState: PlayerState = {
 	tracks: [],
 	duration: 0,
 	timeProgress: 0,
+	volume: 50,
+	isMute: false,
 	isPlaying: false,
 	isRepeat: false,
 	isRandom: false,
@@ -16,6 +18,11 @@ export const playerReducer = (
 	action: PlayerActionTypes,
 ) => {
 	switch (action.type) {
+		case 'LOAD_TRACKS':
+			return {
+				...state,
+				tracks: action.payload,
+			}
 		case 'SET_DURATION':
 			return {
 				...state,
@@ -26,10 +33,15 @@ export const playerReducer = (
 				...state,
 				timeProgress: action.payload,
 			}
-		case 'LOAD_TRACKS':
+		case 'SET_VOLUME':
 			return {
 				...state,
-				tracks: action.payload,
+				volume: action.payload,
+			}
+		case 'SET_MUTE':
+			return {
+				...state,
+				volume: action.payload,
 			}
 		case 'TOGGLE_PLAY_PAUSE':
 			return {

@@ -1,32 +1,24 @@
-import { FC, memo, useEffect, useState } from 'react'
+import { FC, memo } from 'react'
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from 'react-icons/io'
 import styles from './Volume.module.scss'
+import { RootState } from 'store/types'
+import { useSelector, useDispatch } from 'react-redux'
+import { setMute, setVolume } from './../../../store/actions/player'
 
-interface VolumeProps {
-	audioRef: React.RefObject<HTMLAudioElement>
-}
+const Volume: FC = memo(() => {
+	const dispatch = useDispatch()
 
-const Volume: FC<VolumeProps> = memo(({ audioRef }) => {
-	const [volume, setVolume] = useState(50)
-	const [muteVolume, setMuteVolume] = useState(false)
-
-	useEffect(() => {
-		if (audioRef) {
-			if (audioRef.current) {
-				audioRef.current.volume = volume / 100
-				audioRef.current.muted = muteVolume
-			}
-		}
-	}, [volume, audioRef, muteVolume])
+	const volume = useSelector((state: RootState) => state.player.volume)
+	const isMute = useSelector((state: RootState) => state.player.isMute)
 
 	return (
-		<div className={styles.volume}>
+		<div className={styles.volume} onClick={e => e.stopPropagation()}>
 			<button
 				className={styles.button}
-				onClick={() => setMuteVolume(prev => !prev)}
+				onClick={() => dispatch(setMute(!isMute))}
 				title='Громкость'
 			>
-				{muteVolume || volume === 0 ? (
+				{isMute || volume === 0 ? (
 					<IoMdVolumeOff />
 				) : volume < 40 ? (
 					<IoMdVolumeLow />
@@ -42,7 +34,7 @@ const Volume: FC<VolumeProps> = memo(({ audioRef }) => {
 						min={0}
 						max={100}
 						value={volume}
-						onChange={e => setVolume(+e.target.value)}
+						onChange={e => dispatch(setVolume(+e.target.value))}
 						style={{
 							background: `linear-gradient(to right, #d5ac05 ${volume}%, #777 ${volume}%)`,
 						}}

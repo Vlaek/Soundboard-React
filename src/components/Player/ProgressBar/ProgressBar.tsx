@@ -37,7 +37,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
 	}
 
 	return (
-		<div className={styles.progressBar}>
+		<div className={styles.progressBar} onClick={e => e.stopPropagation()}>
 			<div className={styles.progressContainer}>
 				<div className={styles.progress} ref={progressRef}></div>
 			</div>

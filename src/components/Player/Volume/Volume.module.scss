@@ -1,31 +1,10 @@
 .volume {
 	height: 100%;
+
 	position: relative;
-
-	input {
-		width: 150px !important;
-		transform: rotate(-90deg);
-	}
-
-	@media (max-width: 992px) {
-		width: 25px;
-	}
-
-	@media (max-width: 768px) {
-		width: 20px;
-	}
-
-	@media (max-width: 576px) {
-		width: 15px;
-	}
-
-	@media (max-width: 490px) {
-		width: 12px;
-	}
 }
 
 .button {
-	width: 50px;
 	height: 100%;
 	font-size: 30px;
 
@@ -44,31 +23,9 @@
 			}
 		}
 	}
-
-	@media (max-width: 992px) {
-		font-size: 25px;
-		width: 25px;
-	}
-
-	@media (max-width: 768px) {
-		font-size: 20px;
-		width: 20px;
-	}
-
-	@media (max-width: 576px) {
-		height: 60px;
-		font-size: 15px;
-		width: 15px;
-	}
-
-	@media (max-width: 490px) {
-		font-size: 12px;
-		width: 12px;
-	}
 }
 
 .volumeContainer {
-	width: 50px;
 	height: 230px;
 	visibility: hidden;
 	display: flex;
@@ -86,20 +43,9 @@
 		}
 	}
 
-	@media (max-width: 992px) {
-		width: 25px;
-	}
-
-	@media (max-width: 768px) {
-		width: 20px;
-	}
-
-	@media (max-width: 576px) {
-		width: 15px;
-	}
-
-	@media (max-width: 490px) {
-		width: 12px;
+	input {
+		width: 150px !important;
+		transform: rotate(-90deg);
 	}
 }
 
@@ -114,13 +60,32 @@
 	transition: opacity 0.3s ease;
 	opacity: 0;
 	position: relative;
+
+	@media (max-width: 1250px) {
+		left: -10px;
+	}
+
+	@media (max-width: 992px) {
+		left: -15px;
+	}
+
+	@media (max-width: 576px) {
+		left: -10px;
+		width: 40px;
+	}
 }
 
 .percent {
 	position: absolute;
-	top: 5px;
+	top: 6px;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	user-select: none;
+	font-size: 18px;
+
+	@media (max-width: 768px) {
+		top: 7px;
+		font-size: 16px;
+	}
 }
