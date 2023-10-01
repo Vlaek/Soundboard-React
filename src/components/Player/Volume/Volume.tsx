@@ -5,7 +5,7 @@ import { RootState } from 'store/types'
 import { useSelector, useDispatch } from 'react-redux'
 import { setMute, setVolume } from './../../../store/actions/player'
 
-const Volume: FC = memo(() => {
+const Volume: FC<{ posL?: number }> = memo(({ posL }) => {
 	const dispatch = useDispatch()
 
 	const volume = useSelector((state: RootState) => state.player.volume)
@@ -27,7 +27,7 @@ const Volume: FC = memo(() => {
 				)}
 			</button>
 			<div className={styles.volumeContainer}>
-				<div className={styles.inputContainer}>
+				<div className={styles.inputContainer} style={{ left: posL && posL }}>
 					<div className={styles.percent}>{volume}</div>
 					<input
 						type='range'

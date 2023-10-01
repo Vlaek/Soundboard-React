@@ -166,7 +166,7 @@ const Modal: FC<ModalProps> = ({
 				>
 					<IoShuffle />
 				</button>
-				<Volume />
+				<Volume posL={0} />
 			</div>
 		</>
 	)
