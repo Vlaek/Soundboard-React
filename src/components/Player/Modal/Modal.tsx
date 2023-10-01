@@ -70,13 +70,13 @@ const Modal: FC<ModalProps> = ({
 
 	const previousImg =
 		trackIndex === 0
-			? tracks[tracks.length - 1].author
-			: tracks[trackIndex - 1].author
+			? tracks[tracks.length - 1]?.author
+			: tracks[trackIndex - 1]?.author
 
 	const nextImg =
 		trackIndex >= tracks.length - 1
-			? tracks[0].author
-			: tracks[trackIndex + 1].author
+			? tracks[0]?.author
+			: tracks[trackIndex + 1]?.author
 
 	return (
 		<>
@@ -113,7 +113,7 @@ const Modal: FC<ModalProps> = ({
 			</div>
 			<div className={styles.display} onClick={e => e.stopPropagation()}>
 				<div className={styles.name}>{currentTrack?.name}</div>
-				<div className={styles.name}>{String(progressRef.current)}</div>
+				{/* <div className={styles.name}>{String(progressRef.current)}</div> */}
 				<div className={styles.author}>{currentTrack?.author}</div>
 				<ProgressBar {...{ audioRef, progressBarRef, progressRef }} />
 			</div>

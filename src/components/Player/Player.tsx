@@ -71,30 +71,22 @@ const Player: FC = () => {
 					<Controls {...{ audioRef, progressBarRef, progressRef }} />
 				</div>
 			</CSSTransition>
-			<CSSTransition
-				timeout={200}
-				in={showModal}
-				nodeRef={modalRef}
-				unmountOnExit
-				classNames={{
-					enter: styles.modal_enter,
-					enterActive: styles.modal_enter_active,
-					exit: styles.modal_exit,
-					exitActive: styles.modal_exit_active,
+			<div
+				className={styles.modal}
+				ref={modalRef}
+				style={{
+					visibility: showModal ? 'visible' : 'hidden',
+					opacity: showModal ? 1 : 0,
 				}}
 			>
-				<div className={styles.modal} ref={modalRef}>
-					{showModal && (
-						<Modal
-							audioRef={audioRef}
-							progressBarRef={ModalProgressBarRef}
-							progressRef={ModalProgressRef}
-							showModal={showModal}
-							setShowModal={setShowModal}
-						/>
-					)}
-				</div>
-			</CSSTransition>
+				<Modal
+					audioRef={audioRef}
+					progressBarRef={ModalProgressBarRef}
+					progressRef={ModalProgressRef}
+					showModal={showModal}
+					setShowModal={setShowModal}
+				/>
+			</div>
 			{currentTrack && (
 				<audio
 					src={`./tracks/${currentTrack.file}`}
