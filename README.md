@@ -56,3 +56,8 @@
 ## Сортировка и фильтрация
 
 ![Сортировка и фильтрация](https://media.giphy.com/media/SHdYpqWAZa0kSAZxqo/giphy.gif 'Сортировка и фильтрация')
+
+## Мобильная версия
+
+![Главная страница](https://i.imgur.com/fYEFwVu.jpg 'Главная страница')
+![Плеер](https://i.imgur.com/IXEcbQm.jpg 'Плеер')
