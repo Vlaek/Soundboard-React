@@ -30,10 +30,6 @@ function usePlayerControls(
 		}
 		if (progressBarRef?.current && progressRef?.current) {
 			progressBarRef.current.value = String(currentTime)
-			// progressBarRef.current.style.setProperty(
-			// 	'--range-progress',
-			// 	`${(+progressBarRef.current.value / duration) * 0}%`,
-			// )
 			progressRef.current.style.width = `${
 				(+progressBarRef.current.value / duration) * 100
 			}%`
