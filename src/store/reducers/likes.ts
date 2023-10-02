@@ -1,7 +1,15 @@
 import { ITrack } from 'types/types'
 import { LikesState } from '../types'
 
-const initialState: ITrack[] = []
+const getFromLocalStorage = (key: string) => {
+	const value = localStorage.getItem(key)
+	if (value) {
+		return JSON.parse(value)
+	}
+	return []
+}
+
+const initialState: ITrack[] = getFromLocalStorage('likes')
 
 export const likesReducer = (
 	state = initialState,
@@ -19,8 +27,13 @@ export const likesReducer = (
 			})
 
 			if (!isInArray) {
+				localStorage.setItem(
+					'likes',
+					JSON.stringify([...state, action.payload]),
+				)
 				return [...state, action.payload]
 			} else {
+				localStorage.setItem('likes', JSON.stringify([...state]))
 				return [...state]
 			}
 		}
